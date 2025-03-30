@@ -14,7 +14,9 @@ import java.net.URL;
 public class Weather {
     public  double[] numbers = new double[6];
 
-    Weather(){}
+    Weather(){
+        weatherFunctions();
+    }
 
 
     private String getWeather(){ // returns the result of the weather API thing I'm using.
@@ -48,7 +50,7 @@ public class Weather {
 
     }
 
-    public double[] returnFunctions(){
+    private void weatherFunctions(){
 
         String weatherData = getWeather();
 
@@ -76,12 +78,10 @@ public class Weather {
         catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
-
-
-    return numbers;
-
-
+    public double[] getWeatherArray(){ // this is just a getter for the weather
+        return numbers;
     }
 
 }

@@ -9,17 +9,21 @@ public class CurrentDate {
         protected DayOfWeek currentday;
         protected String date;
 
-        CurrentDate(){
+        public CurrentDate(){
+           setCurrentdate();
+
+        }
+
+        private void setCurrentdate(){
             LocalDate currentdate = LocalDate.now();
             String date = currentdate.toString();
             currentday= currentdate.getDayOfWeek();
             this.date=date;
-
         }
 
 
 
-        int getCurrentday(){ // this method displays the day like Wedneday.
+        public int getCurrentday(){ // this method displays the day like Wedneday.
 
             int counter =0;
             String day="";
@@ -37,7 +41,7 @@ public class CurrentDate {
 
         }
 
-        int  getCurrentMonth(){ // this method gets the current month;
+        public int getCurrentMonth(){ // this method gets the current month;
 
             int counter=0;
             int month=0;
@@ -55,7 +59,7 @@ public class CurrentDate {
         }
 
 
-        int getCurrentYear(){ // this method gets the current year
+        public int getCurrentYear(){ // this method gets the current year
             String year="";
             int counter=0;
 

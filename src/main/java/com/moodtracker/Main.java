@@ -6,19 +6,12 @@ package com.moodtracker;
 public class Main {
     public static void main(String[] args) {
 
-        CurrentDate date = new CurrentDate();
 
-        int year = date.getCurrentYear();
-        int month = date.getCurrentMonth();
 
-        Months monthcal = new Months(year,month);
-        monthcal.displayMonthCalendar();
-        PerctageofMood mood = new PerctageofMood();
-        mood.calculateMoodPercentage();
-        UserInfo user = new UserInfo();
-        user.askExcerciseHours();
-        user.askSleepHours();
-        user.storeMood();
+        Mood mood2 = new Mood();
+
+
+
 
 
 
