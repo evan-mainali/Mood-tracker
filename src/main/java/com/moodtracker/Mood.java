@@ -14,6 +14,7 @@ public class Mood extends CurrentDate {// this class, collects mood, sleep hours
     public Mood() {
         this.mood = askMood();
         fileMood();
+        ReadMood read = new ReadMood();
     }
 
 
