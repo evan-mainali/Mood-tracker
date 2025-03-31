@@ -9,8 +9,17 @@ public class SleepHours extends CurrentDate {
 
     private int hours;
 
-    public SleepHours(){
+    private String name;
+
+    private int age;
+
+    public SleepHours(String name,int age){
+        this.name=name;
+
+        this.age=age;
+
         askSleepHours();
+
         fileSleepHours();
     }
 
@@ -33,7 +42,7 @@ public class SleepHours extends CurrentDate {
     private void fileSleepHours(){
         try { // this part of the program stores the sleep hours into a file
             BufferedWriter writer = new BufferedWriter(new FileWriter("SleepHours.txt",true));
-            writer.write(getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
+            writer.write(name+" "+age+" "+getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
             writer.newLine();
             writer.close();
         }

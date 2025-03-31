@@ -9,7 +9,13 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
     private int hours;
 
-    public ExerciseHours(){
+    private String name;
+
+    private int age;
+
+    public ExerciseHours(String name, int age){
+        this.name=name;
+        this.age=age;
         askExerciseHours();
         exerciseFileWriter();
     }
@@ -33,7 +39,7 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
     private void exerciseFileWriter(){ // writes the hours of exercise done to a file
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Excercise.txt", true)); // stores excercise hour in a file
-            writer.write(getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
+            writer.write(name+" "+age+" "+getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
             writer.newLine();
             writer.close();
         }

@@ -1,53 +1,69 @@
 package com.moodtracker;
 
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
+    private String date;
     private String name;
-    private int age;
+    private String age;
+    private String mood;
 
-    public User(String name, int age){ // this class just has the user information like nam and age which is relevant;
-        this.name=setName(name);
-        this.age=setAge(age);
+
+    public User(String name, String age, String date, String mood){ // this class just has the user information like nam and age which is relevant;
+        this.name=name;
+        this.age=age;
+        this.date=date;
+        this.mood=mood;
     }
 
-    private String setName(String name){// these are validators for thr name and ages.
-        String userName =" ";
-        while(true){
-            if(name.matches("[a-zA-Z ]+")){
-                userName=name;
-                break;
-            }
-            else{
-                System.out.print("Invalid name try again ");
-                Scanner input = new Scanner(System.in);
-                name= input.nextLine();
-
-            }
-        }
-        return userName;
-    }
-
-    private int setAge(int age){
-        int userAge=0;
-        while(true){
-            if(age<=0 || age>120){
-                System.out.print("Invalid age, try again ");
-                Scanner input = new Scanner(System.in);
-                userAge = input.nextInt();
-            }
-            else{
-                userAge=age;
-                break;
-            }
-        }
-        return userAge;
-    }
 
     public String getName(){ // these are getters
         return name;
     }
-    public int getAge(){
+    public String getAge(){
         return age;
+    }
+    public String getMood(){
+        return mood;
+    }
+
+    // Manual Mood Percentage Calculation (No Shortcuts)
+    public static void calculateMoodPercentage(List<User> users) {
+        // Step 1: Count the total number of users
+        int totalUsers = users.size();
+
+
+        // Step 2: Manually count the number of each mood
+        List<String> moods = new ArrayList<>();
+        List<Integer> moodCounts = new ArrayList<>();
+
+        for (User user : users) {
+            String userMood = user.getMood();
+            boolean found = false;
+
+            // Check if the mood is already in our list
+            for (int i = 0; i < moods.size(); i++) {
+                if (moods.get(i).equals(userMood)) {
+                    moodCounts.set(i, moodCounts.get(i) + 1); // Increase the count manually
+                    found = true;
+                    break;
+                }
+            }
+
+            // If it's a new mood, add it to the list
+            if (!found) {
+                moods.add(userMood);
+                moodCounts.add(1);
+            }
+        }
+
+        // Step 3: Calculate and print percentages manually
+        System.out.println("Mood Percentages:");
+        for (int i = 0; i < moods.size(); i++) {
+            double percentage = (moodCounts.get(i) * 100.0) / totalUsers;
+            System.out.println(moods.get(i) + ": " + percentage + "%");
+        }
     }
 }

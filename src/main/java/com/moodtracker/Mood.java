@@ -11,10 +11,15 @@ public class Mood extends CurrentDate {// this class, collects mood, sleep hours
 
     private String mood;
 
-    public Mood() {
+    private String name;
+
+    private int age;
+
+    public Mood(String name,int age) {
         this.mood = askMood();
         fileMood();
-        ReadMood read = new ReadMood();
+        this.name=name;
+        this.age=age;
     }
 
 
@@ -54,7 +59,7 @@ public class Mood extends CurrentDate {// this class, collects mood, sleep hours
 
     private void fileMood() {// writes the private methods in a file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Mood.txt", true))) {
-            writer.write(getCurrentday() + "-" + getCurrentMonth() + "-" + getCurrentYear() + " " + mood);
+            writer.write(name+" "+age+" "+getCurrentday() + "-" + getCurrentMonth() + "-" + getCurrentYear() + " " + mood);
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
