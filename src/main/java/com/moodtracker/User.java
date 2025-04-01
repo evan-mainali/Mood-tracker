@@ -11,7 +11,7 @@ public class User {
     private String mood;
 
 
-    public User(String name, String age, String date, String mood){ // this class just has the user information like nam and age which is relevant;
+    public User(String name, String age, String date, String mood){ // this class will print out the user info links related to their mood.
         this.name=name;
         this.age=age;
         this.date=date;
@@ -60,10 +60,16 @@ public class User {
         }
 
         // Step 3: Calculate and print percentages manually
-        System.out.println("Mood Percentages:");
+        System.out.println("Data so far is");
         for (int i = 0; i < moods.size(); i++) {
             double percentage = (moodCounts.get(i) * 100.0) / totalUsers;
             System.out.println(moods.get(i) + ": " + percentage + "%");
         }
+    }
+
+    public double[] weatherArrayTypes(){
+
+        Weather weather = new Weather();
+        return weather.getWeatherArray();
     }
 }

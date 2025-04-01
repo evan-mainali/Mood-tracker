@@ -9,9 +9,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ReadFiles read = new ReadFiles();
-        List<User> user = read.readMoodFile();
-        User.calculateMoodPercentage(user);
+        Weather weather = new Weather();
+        OutdoorTime time = new OutdoorTime("evan",16, weather.getWeatherArray());
+
+
 
 
 
@@ -19,7 +20,7 @@ public class Main {
 
     }
 
-    public static String setName(){
+    public static String setName(){ 
         String username=" ";
         while(true){
             System.out.print("Enter name ");
