@@ -20,16 +20,16 @@ public class UserInfo {
 
     public String getName(){ // these are getters
         return name;
-    }
+    } // getter for name
     public String getAge(){
         return age;
-    }
+    } // getter for age
     public String getMood(){
         return mood;
-    }
+    } // getter for mood
 
     // Manual Mood Percentage Calculation (No Shortcuts)
-    public static void calculateMoodPercentage(List<UserInfo> userInfos) {
+    public static void calculateMoodPercentage(List<UserInfo> userInfos) { // method to cslculate mood as percentages from Mood.txt file
         // Step 1: Count the total number of users
         int totalUsers = userInfos.size();
 
@@ -66,9 +66,5 @@ public class UserInfo {
         }
     }
 
-    public double[] weatherArrayTypes(){
 
-        Weather weather = new Weather();
-        return weather.getWeatherArray();
-    }
 }

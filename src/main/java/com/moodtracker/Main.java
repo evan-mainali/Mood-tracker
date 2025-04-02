@@ -8,14 +8,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ReadFiles readFiles = new ReadFiles();
-        UserInfo.calculateMoodPercentage(readFiles.readMoodFile());
-
-
-
-
-
-
+        CurrentDate date = new CurrentDate();
+        int month = date.getCurrentMonth();;
+        int year = date.getCurrentYear();
+        Months month2 = new Months(year,month);
+        month2.displayMonthCalendar();
 
 
     }

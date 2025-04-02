@@ -1,5 +1,8 @@
 package com.moodtracker;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class OutdoorTime {
@@ -8,12 +11,15 @@ public class OutdoorTime {
     private String name;
     private int age;
     private int hours;
+    private String date;
 
-    public OutdoorTime(String name, int age, double[] array) {
+    public OutdoorTime(String name, int age, String date,double[] array) {
         this.name = name;
         this.age = age;
         this.weatherArray = array;
+        this.date=date;
         askOutdoorHours();
+        writeOutdoorTime();
 
     }
     private int askOutdoorHours() {
@@ -44,6 +50,20 @@ public class OutdoorTime {
         System.out.println("Sunshine hours: "+weatherArray[3]+" hours");
         System.out.println("Effective sunshine hours: "+weatherArray[6]+" hours");
 
+
+    }
+
+    private void writeOutdoorTime(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Outdoortime.txt"));
+            writer.write(name+" "+age+" "+date+" "+askOutdoorHours());
+            writer.newLine();
+            writer.close();
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
