@@ -3,7 +3,6 @@ package com.moodtracker;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,8 @@ public class ReadFiles {
 
     }
 
-    public List<User> readMoodFile() { // reads data from the file stroes the seperate data in variables then in a list to user later;
-        List<User> users = new ArrayList<>();
+    public List<UserInfo> readMoodFile() { // reads data from the file stores the separate data in variables then in a list to user later;
+        List<UserInfo> userInfos = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FILENAME))) {
             String line;
@@ -30,8 +29,8 @@ public class ReadFiles {
                 String age = lines[1];
                 String date = lines[2];
                 String mood = lines[3];
-                User user = new User(name,age,date,mood);
-                users.add(user);
+                UserInfo userInfo = new UserInfo(name,age,date,mood);
+                userInfos.add(userInfo);
 
             }
 
@@ -41,7 +40,7 @@ public class ReadFiles {
 
             e.printStackTrace();
         }
-        return users;
+        return userInfos;
     }
 
 

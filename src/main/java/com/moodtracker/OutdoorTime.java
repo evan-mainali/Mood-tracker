@@ -13,7 +13,8 @@ public class OutdoorTime {
         this.name = name;
         this.age = age;
         this.weatherArray = array;
-        hours=askOutdoorHours();
+        askOutdoorHours();
+
     }
     private int askOutdoorHours() {
         Scanner input = new Scanner(System.in);
@@ -36,6 +37,14 @@ public class OutdoorTime {
 
         }
         return hours;
+    }
+
+    public void getSunShineHours(){
+
+        System.out.println("Sunshine hours: "+weatherArray[3]+" hours");
+        System.out.println("Effective sunshine hours: "+weatherArray[6]+" hours");
+
+
     }
 
 }

@@ -1,7 +1,6 @@
 package com.moodtracker;
 
 
-import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -9,8 +8,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Weather weather = new Weather();
-        OutdoorTime time = new OutdoorTime("evan",16, weather.getWeatherArray());
+        ReadFiles readFiles = new ReadFiles();
+        UserInfo.calculateMoodPercentage(readFiles.readMoodFile());
+
 
 
 

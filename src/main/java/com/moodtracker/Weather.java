@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 public class Weather {
-    public  double[] numbers = new double[7];
+    public  double[] numbers = new double[9];
     private final Scanner input = new Scanner(System.in);
 
 
@@ -48,19 +48,29 @@ public class Weather {
         String weatherData = getWeather();
 
         try {
+
+            // Parse the weather data JSON response
             JSONObject jsonResponse = new JSONObject(weatherData);
+
+            // Extracts the "current" weather details from the JSON response
             JSONObject current = jsonResponse.getJSONObject("current");
+
+            // Extracts the "forecast" object, which contains weather predictions
             JSONObject forecast = jsonResponse.getJSONObject("forecast");
+
+            // Get the first day's forecast from the "forecastday" array
             JSONObject forecastDay = forecast.getJSONArray("forecastday").getJSONObject(0);
+
+            // Extracts astronomical data (e.g., sunrise, sunset times) from the forecast
             JSONObject astro = forecastDay.getJSONObject("astro");
 
             // Extracting data from JSON response
-            double tempCelsius = current.getDouble("temp_c");
-            double feelsLikeCelsius = current.getDouble("feelslike_c");
-            double humidity = current.getDouble("humidity");
-            double windSpeed = current.getDouble("wind_kph");
-            double pressure = current.getDouble("pressure_mb");
-            double uvIndex = current.getDouble("uv");
+            double tempCelsius = current.getDouble("temp_c"); // gets temperature
+            double feelsLikeCelsius = current.getDouble("feelslike_c"); //gets feels like temp
+            double humidity = current.getDouble("humidity");// gets humidity
+            double windSpeed = current.getDouble("wind_kph"); // gets wind Kph
+            double pressure = current.getDouble("pressure_mb");// gets pressure
+            double uvIndex = current.getDouble("uv");// gets UV index
 
             // Adding new data extraction for sunshine hours
             String sunrise = astro.getString("sunrise");
@@ -82,7 +92,10 @@ public class Weather {
                 count++;
             }
 
-            double averageCloudCover = totalCloudCover / count;
+            double averageCloudCover = totalCloudCover / count;//calculates average cloudCover
+            double cloudCoverFraction = averageCloudCover/100.0; // converts it to a fraction
+            // gets the amount of sunshine reaching the ground bt taking cloudCover ito account
+            double effectiveSunShineHours = sunshineHours*(1-cloudCoverFraction);
 
             // Storing data in the numbers array (adding sunshine hours & cloud cover as well)
             numbers[0] = humidity;
@@ -91,7 +104,9 @@ public class Weather {
             numbers[3] = sunshineHours;
             numbers[4] = tempCelsius;
             numbers[5] = feelsLikeCelsius;
-            numbers[6] = averageCloudCover;
+            numbers[6] = effectiveSunShineHours;
+            numbers[7] = uvIndex;
+            numbers[8] = averageCloudCover;
 
 
         } catch (JSONException e) {
@@ -99,7 +114,7 @@ public class Weather {
         }
     }
 
-    private double convertToDecimalHours(String time) {
+    private double convertToDecimalHours(String time) {// method made for sunshine hours conversion
         String[] parts = time.split(" ");
         String[] hourMin = parts[0].split(":");
         int hour = Integer.parseInt(hourMin[0]);
@@ -115,24 +130,7 @@ public class Weather {
 
     }
 
-    public int timeSpentOutside() {
-        int time = -1;
 
-        while (true) {
-            try {
-                System.out.print("How long you spent outside today (in minutes): ");
-                time = Integer.parseInt(input.nextLine());
-
-                if (time >= 0) break; // Valid input, break the loop
-                else System.out.println("Please enter a valid non-negative number.");
-
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-            }
-        }
-
-        return time;
-    }
     public double[] getWeatherArray(){ // this is just a getter for the weather array
         return numbers;
     }

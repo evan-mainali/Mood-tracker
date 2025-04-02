@@ -1,17 +1,16 @@
 package com.moodtracker;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class UserInfo {
     private String date;
     private String name;
     private String age;
     private String mood;
 
 
-    public User(String name, String age, String date, String mood){ // this class will print out the user info links related to their mood.
+    public UserInfo(String name, String age, String date, String mood){ // this class will print out the user info links related to their mood.
         this.name=name;
         this.age=age;
         this.date=date;
@@ -30,17 +29,17 @@ public class User {
     }
 
     // Manual Mood Percentage Calculation (No Shortcuts)
-    public static void calculateMoodPercentage(List<User> users) {
+    public static void calculateMoodPercentage(List<UserInfo> userInfos) {
         // Step 1: Count the total number of users
-        int totalUsers = users.size();
+        int totalUsers = userInfos.size();
 
 
         // Step 2: Manually count the number of each mood
         List<String> moods = new ArrayList<>();
         List<Integer> moodCounts = new ArrayList<>();
 
-        for (User user : users) {
-            String userMood = user.getMood();
+        for (UserInfo userInfo : userInfos) {
+            String userMood = userInfo.getMood();
             boolean found = false;
 
             // Check if the mood is already in our list
