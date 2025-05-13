@@ -3,7 +3,7 @@ package com.moodtracker;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
-public class Months extends  CurrentDate{
+public class Calendar extends  CurrentDate{
 
     private static final String[] DAYS = {"MONDAY", "TUESDAY", "WEDNESDAY",
             "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"};
@@ -13,7 +13,7 @@ public class Months extends  CurrentDate{
             "JULY","AUGUST","SEPETMBER","OCTOBER","NOVEMBER","DECEMBER"};
     private String[][] monthCalendar;
 
-    public Months(int year, int month) {
+    public Calendar(int year, int month) {
         this.year = year;
         this.month = month;
         generateMonthCalendar();
@@ -56,20 +56,4 @@ public class Months extends  CurrentDate{
             System.out.println();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
