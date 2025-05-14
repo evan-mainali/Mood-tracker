@@ -1,5 +1,6 @@
 package com.moodtracker;
 import com.moodtracker.frontEnd.LoginGUI;
+import com.moodtracker.frontEnd.MoodSelect;
 
 import javax.swing.*;
 
@@ -8,7 +9,8 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        LoginGUI gui = new LoginGUI();
+        MoodSelect mood = new MoodSelect();
+
 
 
 

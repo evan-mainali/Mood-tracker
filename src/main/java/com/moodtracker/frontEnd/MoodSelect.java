@@ -9,15 +9,21 @@ import java.util.HashMap;
 public class MoodSelect extends JFrame {
 
     private JPanel panel;
+    Color[] backgroundColor = {Color.RED,Color.GREEN,Color.YELLOW,Color.BLACK,
+            Color.WHITE,Color.ORANGE,Color.MAGENTA,Color.CYAN      } ;
+
+    String[] moods = {"Happy", "Sad", "Regular"};
+
+    String[] colors = {"RED","GREEN","YELLLOW","BLACK","WHITE",
+            "ORANGE","MAGENTA","CYAN"};
 
 
     public MoodSelect(){
         setTitle("Mood Select");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000,1000);
-        setLayout(new GridLayout(3,1));
+        setLayout(null);
 
-        String[] moods = {"Happy", "Sad", "Regular"};
 
         HashMap<String,Color> colorMap = new HashMap<>(); //creates a hash map for color
 
@@ -32,43 +38,38 @@ public class MoodSelect extends JFrame {
         colorMap.put("Cyan", Color.CYAN);
         colorMap.put("Magenta", Color.MAGENTA);
 
-        String[] colorNames = colorMap.keySet().toArray(new String[0]);
+        JComboBox box = new JComboBox<String>(colors); // creates display menu
+        box.setBounds(0,0,1000,20);
 
-        // Create three layers
-        for (int i = 1; i <= 3; i++) {
-            JPanel layerPanel = new JPanel(new BorderLayout());
-            layerPanel.setBorder(BorderFactory.createTitledBorder("Layer " + i));
+        box.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String action = (String) box.getSelectedItem();
+                changeBackground(action);
 
-            JComboBox<String> colorComboBox = new JComboBox<>(colorNames);
-            JPanel colorDisplayPanel = new JPanel();
-            colorDisplayPanel.setPreferredSize(new Dimension(100, 100));
-            colorDisplayPanel.setBackground(Color.WHITE);  // default color
 
-            // Listener to change color
-            colorComboBox.addActionListener(e -> {
-                String selectedColor = (String) colorComboBox.getSelectedItem();
-                Color chosenColor = colorMap.get(selectedColor);
-                colorDisplayPanel.setBackground(chosenColor);
-            });
+            }
+        });
 
-            // Layout for each layer
-            layerPanel.add(colorComboBox, BorderLayout.NORTH);
-            layerPanel.add(colorDisplayPanel, BorderLayout.CENTER);
 
-            add(layerPanel);
-        }
+
+        add(box);
 
 
         setVisible(true);
 
+    }
 
 
+    private void changeBackground(String action){
 
+        for(int i=0;i< colors.length;i++){
+            if(action.equals(colors[i])){
+                setBackground(backgroundColor[i]);
 
+            }
 
-
-
-
+        }
 
     }
 

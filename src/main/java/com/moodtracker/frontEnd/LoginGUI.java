@@ -43,9 +43,11 @@ public class LoginGUI extends JFrame {
             submitButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
                     validateInputs();
                 }
             });
+
 
 
 
@@ -55,12 +57,13 @@ public class LoginGUI extends JFrame {
             add(nameLabel);
             add(ageLabel);
 
+
             setVisible(true);
 
     }
 
     private void validateInputs() {
-        name = textUsername.getText().trim();
+        name = textUsername.getText().trim(); // stores the value in textUsername in name;
 
         String ageText = textAge.getText().trim();
 
@@ -72,7 +75,7 @@ public class LoginGUI extends JFrame {
         }
 
         // Validate age (numeric and reasonable range)
-        int age;
+
         try {
             age = Integer.parseInt(ageText);
             if (age < 1 || age > 120) {
@@ -86,8 +89,8 @@ public class LoginGUI extends JFrame {
 
         // If both valid
         JOptionPane.showMessageDialog(this, "Welcome, " + name + "! Your age: " + age);
-        this.age=age;
 
+        System.out.println(name+" "+age);
         setVisible(false);
 
         MoodSelect display = new MoodSelect(); //next page will become true
@@ -95,6 +98,8 @@ public class LoginGUI extends JFrame {
 
 
     }
+
+
 
 
 
