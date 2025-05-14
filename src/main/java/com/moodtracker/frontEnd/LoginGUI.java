@@ -48,7 +48,7 @@ public class LoginGUI extends JFrame {
                 }
             });
 
-
+            System.out.println(name+" "+age);
 
 
             add(textUsername);
@@ -80,6 +80,7 @@ public class LoginGUI extends JFrame {
             age = Integer.parseInt(ageText);
             if (age < 1 || age > 120) {
                 JOptionPane.showMessageDialog(this, "Age must be between 1 and 120.");
+
                 return;
             }
         } catch (NumberFormatException ex) {

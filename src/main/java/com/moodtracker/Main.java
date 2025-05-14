@@ -9,7 +9,10 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        MoodSelect mood = new MoodSelect();
+        LoginGUI gui = new LoginGUI();
+
+
+        
 
 
 
