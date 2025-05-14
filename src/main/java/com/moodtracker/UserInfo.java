@@ -6,11 +6,11 @@ import java.util.List;
 public class UserInfo {
     private String date;
     private String name;
-    private String age;
+    private int age;
     private String mood;
 
 
-    public UserInfo(String name, String age, String date, String mood){ // this class will print out the user info links related to their mood.
+    public UserInfo(String name, int age, String date, String mood){ // this class will print out the user info links related to their mood.
         this.name=name;
         this.age=age;
         this.date=date;
@@ -21,7 +21,7 @@ public class UserInfo {
     public String getName(){ // these are getters
         return name;
     } // getter for name
-    public String getAge(){
+    public int getAge(){
         return age;
     } // getter for age
     public String getMood(){

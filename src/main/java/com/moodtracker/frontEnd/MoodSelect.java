@@ -4,55 +4,75 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class MoodSelect extends JFrame {
 
     private JPanel panel;
-    private JButton[] colorButtons;  // Array to hold color selection buttons
-    private Color selectedColor;
+
 
     public MoodSelect(){
         setTitle("Mood Select");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000,1000);
-        setLayout(null);
+        setLayout(new GridLayout(3,1));
 
-        colorButtons = new JButton[5];
-        String[] colorNames = {"Red", "Green", "Blue", "Yellow", "Orange"};
-        Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE};
+        String[] moods = {"Happy", "Sad", "Regular"};
 
-        // Create the color buttons and add them to the window
-        for (int i = 0; i < colorButtons.length; i++) {
-            colorButtons[i] = new JButton(colorNames[i]);
-            colorButtons[i].setBackground(colors[i]);
-            colorButtons[i].setBounds(50, 300 + (i * 50), 200, 30);
-            colorButtons[i].setOpaque(true);
-            colorButtons[i].setBorderPainted(false);  // Remove button borders
-            colorButtons[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    selectColor((JButton) e.getSource());
-                }
+        HashMap<String,Color> colorMap = new HashMap<>(); //creates a hash map for color
+
+        //places colours in hashmaps
+        colorMap.put("Red", Color.RED);
+        colorMap.put("Green", Color.GREEN);
+        colorMap.put("Blue", Color.BLUE);
+        colorMap.put("Yellow", Color.YELLOW);
+        colorMap.put("Black", Color.DARK_GRAY);
+        colorMap.put("White", Color.PINK);
+        colorMap.put("Orange", Color.ORANGE);
+        colorMap.put("Cyan", Color.CYAN);
+        colorMap.put("Magenta", Color.MAGENTA);
+
+        String[] colorNames = colorMap.keySet().toArray(new String[0]);
+
+        // Create three layers
+        for (int i = 1; i <= 3; i++) {
+            JPanel layerPanel = new JPanel(new BorderLayout());
+            layerPanel.setBorder(BorderFactory.createTitledBorder("Layer " + i));
+
+            JComboBox<String> colorComboBox = new JComboBox<>(colorNames);
+            JPanel colorDisplayPanel = new JPanel();
+            colorDisplayPanel.setPreferredSize(new Dimension(100, 100));
+            colorDisplayPanel.setBackground(Color.WHITE);  // default color
+
+            // Listener to change color
+            colorComboBox.addActionListener(e -> {
+                String selectedColor = (String) colorComboBox.getSelectedItem();
+                Color chosenColor = colorMap.get(selectedColor);
+                colorDisplayPanel.setBackground(chosenColor);
             });
-            add(colorButtons[i]);
+
+            // Layout for each layer
+            layerPanel.add(colorComboBox, BorderLayout.NORTH);
+            layerPanel.add(colorDisplayPanel, BorderLayout.CENTER);
+
+            add(layerPanel);
         }
 
 
+        setVisible(true);
 
 
 
 
 
 
-        setVisible(true);;
+
+
+
 
     }
 
-    private void selectColor(JButton sourceButton) {
-        // Set selected color based on the button clicked
-        selectedColor = sourceButton.getBackground();
-        JOptionPane.showMessageDialog(this, "Color selected: " + sourceButton.getText());
-    }
+
 
 
 }

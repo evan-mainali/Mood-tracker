@@ -26,7 +26,7 @@ public class ReadFiles {
             while((line= reader.readLine())!=null){
                 String[] lines = line.split(" ");
                 String name = lines[0];
-                String age = lines[1];
+                int age = Integer.parseInt(lines[1]);
                 String date = lines[2];
                 String mood = lines[3];
                 UserInfo userInfo = new UserInfo(name,age,date,mood);
