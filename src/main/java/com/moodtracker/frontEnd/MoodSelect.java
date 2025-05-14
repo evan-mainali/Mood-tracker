@@ -38,8 +38,11 @@ public class MoodSelect extends JFrame {
 
         submitButton.addActionListener(e-> {
 
-
             setVisible(false);
+
+            NormalPage page = new NormalPage();
+
+
 
         });
 

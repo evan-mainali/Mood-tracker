@@ -1,0 +1,16 @@
+package com.moodtracker.frontEnd;
+
+import javax.swing.*;
+
+public class NormalPage extends JFrame {
+
+    public NormalPage(){
+
+
+        setSize(1000,1000);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setVisible(true);
+    }
+
+}
