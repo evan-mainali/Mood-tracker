@@ -94,7 +94,7 @@ public class LoginGUI extends JFrame {
         System.out.println(name+" "+age);
         setVisible(false);
 
-        MoodSelect display = new MoodSelect(); //next page will become true
+        ColorSelect display = new ColorSelect(); //next page will become true
 
 
 
