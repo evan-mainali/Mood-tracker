@@ -7,7 +7,8 @@ import com.moodtracker.frontEnd.MoodSelect;
 public class Main {
     public static void main(String[] args) {
 
-        MoodSelect mood = new MoodSelect();
+        MoodSelect select = new MoodSelect();
+
 
 
         

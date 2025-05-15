@@ -42,7 +42,7 @@ public class ColorSelect extends JFrame {
         panel.setLayout(null);
         add(panel);
 
-        labelHappy = new JLabel("Select colour for happy mood");
+        labelHappy = new JLabel("Select colour for positive moods");
         labelHappy.setBounds(20, 20, 300, 30);
         panel.add(labelHappy);
 
@@ -51,7 +51,7 @@ public class ColorSelect extends JFrame {
         panel.add(box);
 
         // Sad mood label and combo box
-        labelSad = new JLabel("Select colour for sad mood");
+        labelSad = new JLabel("Select colour for negative moods");
         labelSad.setBounds(20, 90, 300, 30);
         panel.add(labelSad);
 
@@ -59,7 +59,7 @@ public class ColorSelect extends JFrame {
         box2.setBounds(20, 120, 300, 25);
         panel.add(box2);
 
-        labelRegular = new JLabel("Select colour for regular mood");
+        labelRegular = new JLabel("Select colour for neutral moods");
         labelRegular.setBounds(20,160,300,25);
         panel.add(labelRegular);
 

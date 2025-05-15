@@ -91,7 +91,7 @@ public class LoginGUI extends JFrame {
         // If both valid
         JOptionPane.showMessageDialog(this, "Welcome, " + name + "! Your age: " + age);
 
-        System.out.println(name+" "+age);
+
         setVisible(false);
 
         ColorSelect display = new ColorSelect(); //next page will become true

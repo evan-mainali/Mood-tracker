@@ -2,48 +2,91 @@ package com.moodtracker.frontEnd;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class MoodSelect extends JFrame {
 
     private JPanel panel;
     private JLabel label;
     private JButton submitButton;
+    private JLabel labelNumbers;
+    private JTextField text;
+
+    private String word;
+    private String emojiMood;
+    private String numberMood;
 
     private String[] mood = {"HAPPY","SAD","ANGRY","THRILLED","E","5","7","F"};
     private String moodPicked="";
 
+    private Integer[] numbers = {1,2,3,4,5,6,7,8};
+    Random random;
+    int randomNumber;
+
 
     public MoodSelect() {
-        setTitle("Select your Mood");
+
+        random = new Random(); // ca;; Random class
+        randomNumber=random.nextInt(3)+1; // make a random number appear between 1 and 3 to choose one of the methods to display.
+
+
+        setTitle("Select your Mood"); // set title
         setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        // Set up label
-        label = new JLabel("Select your mood from the emojis below:");
-        label.setBounds(50, 30, 400, 25);
-        add(label);
 
-        // Set up panel
-        panel = new JPanel();
-        panel.setLayout(null); // Needed if using setBounds inside panel
-        panel.setBounds(50, 80, 500, 500);
+        panel = new JPanel(); // creates panel
+        panel.setLayout(null);
+        panel.setBounds(50, 80, 500, 500); // sets bounds
         add(panel);
 
-        emojiSelector();
 
-        submitButton = new JButton("Submit");
+        if(randomNumber==1){
+            emojiSelector(); // calls emoji selector method
+        }
+
+        else if(randomNumber==2){
+
+            numberSelector(); // calls numberSelector method
+        }
+        else {
+
+            wordWrite(); // calls wordWrite method
+        }
+
+
+
+        submitButton = new JButton("Submit"); // makes a submit button
         submitButton.setBounds(50,350,150,100);
         panel.add(submitButton);
 
         submitButton.addActionListener(e-> {
 
+            if (randomNumber == 3) {  // Only validate if wordWrite is shown
+                String input = text.getText().trim();
+
+                if (input.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "You must enter a mood.");
+                    return; // stop here
+                }
+
+                String[] words = input.split("\\s+");
+                if (words.length > 2) {
+                    JOptionPane.showMessageDialog(this, "Please enter no more than two words.");
+                    return; // stop here
+                }
+
+                word = input; // store valid input
+                JOptionPane.showMessageDialog(this, "Thanks! Mood recorded.");
+
+
+
+            }
+
             setVisible(false);
 
             NormalPage page = new NormalPage();
-
-
-
         });
 
         setVisible(true);
@@ -53,11 +96,17 @@ public class MoodSelect extends JFrame {
         String[] emojis = { "😀", "😂", "😍", "😎", "😢", "😡", "👍", "🎉" };
 
         JComboBox<String> moodbox = new JComboBox<>(emojis);
-        moodbox.setBounds(0, 0, 300, 30); // Position inside panel
-        moodbox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 24)); //
+        moodbox.setBounds(0, 30, 300, 30); // Position inside panel
+        moodbox.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 24)); // // helps make the font better for emojis
+
+        label = new JLabel("Select from the emojis below how you feel ");// adds text for emoji selction
+        label.setBounds(0, 0, 400, 25);
+
+        panel.add(label);
+
+
 
         moodbox.addActionListener(e-> {
-
 
 
             String action = (String) moodbox.getSelectedItem();
@@ -73,8 +122,36 @@ public class MoodSelect extends JFrame {
                 });
 
         panel.add(moodbox);
-
     }
+
+
+    private void numberSelector(){ //method for choosing number for mood
+
+
+
+        JComboBox box = new JComboBox<Integer>(numbers);
+
+        labelNumbers = new JLabel("Select a number for how you feel");
+        labelNumbers.setBounds(50,0,400,25);
+        box.setBounds(0,30,300,30);
+
+        panel.add(box);
+        panel.add(labelNumbers);
+    }
+
+
+    private void wordWrite(){ // method collects written mood of person
+
+        JLabel label = new JLabel("Enter your mood here");
+        label.setBounds(0, 0, 400, 25);
+
+        text = new JTextField();
+        text.setBounds(0, 30, 300, 30);
+
+        panel.add(label);
+        panel.add(text);
+    }
+
 
 
 }
