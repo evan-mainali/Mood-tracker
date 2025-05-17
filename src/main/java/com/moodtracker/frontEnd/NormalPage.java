@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class NormalPage extends JFrame {
-
+    JLabel labelCalendar;
     private JPanel panel;
     private JLabel labelDate;
     private JTextField textExer;
@@ -18,6 +18,7 @@ public class NormalPage extends JFrame {
     private JTextField textSleep;
     private JLabel outdoorTime;
     private JTextField textOut;
+    private JTable table;
 
     public NormalPage(){
 
@@ -54,7 +55,7 @@ public class NormalPage extends JFrame {
         textSleep.setBounds(30,100,250,20);
 
 
-        outdoorTime = new JLabel("<html>Enter how long you were outdoor in the sun for<br>Total hours available = " + time.sunshineHours() + "</html>");
+        outdoorTime = new JLabel("<html>Enter how long you were outdoor in the sun for<br>Total Sunshine hours available is " + time.sunshineHours() +" hours" +"</html>");
         outdoorTime.setBounds(30,150,550,30);
 
 
@@ -62,11 +63,19 @@ public class NormalPage extends JFrame {
         textOut = new JTextField();
         textOut.setBounds(30,190,250,20);
 
+        String[][] calendarData = calendar.getMonthCalendar();
+        String[] columnNames = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
+        table= new JTable(calendarData,columnNames);
+        table.setEnabled(false); // allows no interaction
+        table.setRowHeight(30);
 
+        JScrollPane calendarScroll = new JScrollPane(table);
+        calendarScroll.setBounds(100, 350, 700, 200);
 
-
-
+        labelCalendar = new JLabel(calendar.getMonthString()+" Calendar "+calendar.getCurrentYear());
+        labelCalendar.setBounds(100,310,350,30);
+        labelCalendar.setFont(new Font("arial",Font.BOLD,15));
 
 
 
@@ -82,16 +91,10 @@ public class NormalPage extends JFrame {
         panel.add(textOut);
         add(labelDate);
         add(panel);
+        add(calendarScroll);
+        add(labelCalendar);
+
         setVisible(true);
 
-
-
-
     }
-
-
-
-
-
-
 }

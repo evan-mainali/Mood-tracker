@@ -37,35 +37,17 @@ public class Calendar extends  CurrentDate{
         for (int row = 0; row < monthCalendar.length; row++) {
             for (int col = 0; col < 7; col++) {
                 if (row == 0 && col < startIndex) {
-                    monthCalendar[row][col] = "    "; // Empty cell
+                    monthCalendar[row][col] = " "; // Empty cell
                 } else if (dayCounter <= daysInMonth) {
-                    monthCalendar[row][col] = String.format("%-4d", dayCounter++);
+                    monthCalendar[row][col] = String.valueOf(dayCounter++);
                 } else {
-                    monthCalendar[row][col] = "    ";
+                    monthCalendar[row][col] = " ";
                 }
             }
         }
     }
 
-    public void display() {
 
-        System.out.println("\n" + getMonthString() + " " + year);
-
-        // Print 3-letter headers, each in a 4-char cell
-        for (String day : DAYS) {
-            System.out.printf("%-4s", day);
-        }
-        System.out.println();
-
-        // Print the calendar weeks
-        for (String[] week : monthCalendar) {
-            for (String day : week) {
-                System.out.print(day);
-            }
-            System.out.println();
-        }
-
-    }
 
     public String[][] getMonthCalendar(){
 
