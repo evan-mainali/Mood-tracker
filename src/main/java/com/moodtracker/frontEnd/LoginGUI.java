@@ -1,6 +1,7 @@
 package com.moodtracker.frontEnd;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,15 +28,21 @@ public class LoginGUI extends JFrame {
 
             nameLabel = new JLabel("Enter name"); // creates label for name
             nameLabel.setBounds(50,55,200,30);
+            nameLabel.setForeground(Color.BLACK);
+            nameLabel.setFont(new Font("MV Boli",Font.BOLD,18)); // creates font size and type
 
             textUsername = new JTextField(); //creates text field for name
             textUsername.setBounds(50, 90, 200, 30);
+            textUsername.setForeground(Color.BLACK);
 
             ageLabel = new JLabel("Enter age"); //creates label for age
             ageLabel.setBounds(50,120,200,30);
+            ageLabel.setForeground(Color.BLACK);
+            ageLabel.setFont(new Font("MV Boli",Font.BOLD,18)); // creates font size and type
 
             textAge = new JTextField(); // creates text field for age
             textAge.setBounds(50,150,200,30);
+            textAge.setForeground(Color.BLACK);
 
             submitButton = new JButton("Submit"); // creates a button
             submitButton.setBounds(50,200,200,30);

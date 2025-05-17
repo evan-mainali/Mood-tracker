@@ -17,28 +17,10 @@ public class SleepHours extends CurrentDate {
         this.name=name;
 
         this.age=age;
-
-        askSleepHours();
-
         fileSleepHours();
     }
 
-    private void askSleepHours(){
 
-        System.out.print("Enter how long you slept last night ");
-        Scanner input = new Scanner(System.in);
-        while (true){
-            if(input.hasNext()){
-                hours = input.nextInt();
-                break;
-            }
-            else{
-                System.out.print("try again, invalid ");
-
-            }
-
-        }
-    }
     private void fileSleepHours(){
         try { // this part of the program stores the sleep hours into a file
             BufferedWriter writer = new BufferedWriter(new FileWriter("SleepHours.txt",true));
@@ -49,5 +31,14 @@ public class SleepHours extends CurrentDate {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void storeHours(int n){
+
+        hours = n;
+    }
+
+    public int getHours(){
+        return hours;
     }
 }

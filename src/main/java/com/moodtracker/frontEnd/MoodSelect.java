@@ -61,9 +61,10 @@ public class MoodSelect extends JFrame {
         submitButton.setBounds(50,350,150,100);
         panel.add(submitButton);
 
+
         submitButton.addActionListener(e-> {
 
-            if (randomNumber == 3) {  // Only validate if wordWrite is shown
+            if (randomNumber==3) {  // Only validate if wordWrite is shown
                 String input = text.getText().trim();
 
                 if (input.isEmpty()) {
@@ -72,8 +73,8 @@ public class MoodSelect extends JFrame {
                 }
 
                 String[] words = input.split("\\s+");
-                if (words.length > 2) {
-                    JOptionPane.showMessageDialog(this, "Please enter no more than two words.");
+                if (words.length > 1) {
+                    JOptionPane.showMessageDialog(this, "Please enter no more than one word.");
                     return; // stop here
                 }
 
@@ -150,6 +151,9 @@ public class MoodSelect extends JFrame {
 
         panel.add(label);
         panel.add(text);
+
+
+
     }
 
 

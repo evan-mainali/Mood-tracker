@@ -2,20 +2,20 @@ package com.moodtracker;
 
 import java.util.Scanner;
 
-public class OutdoorTime {
+public class OutdoorTime extends Weather{
 
-    private double[] weatherArray;
+
     private String name;
     private int age;
     private int hours;
 
-    public OutdoorTime(String name, int age, double[] array) {
+    public OutdoorTime(String name, int age) {
         this.name = name;
         this.age = age;
-        this.weatherArray = array;
-        hours=askOutdoorHours();
+
+
     }
-    private int askOutdoorHours() {
+    public void askOutdoorHours() {
         Scanner input = new Scanner(System.in);
 
         while (true) {
@@ -35,7 +35,19 @@ public class OutdoorTime {
             }
 
         }
+
+    }
+
+    public int getHours(){
+
         return hours;
+    }
+
+    public int sunshineHours(){
+
+        return (int)getWeatherArray()[6];
+
+
     }
 
 }
