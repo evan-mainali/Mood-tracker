@@ -8,7 +8,8 @@ import com.moodtracker.frontEnd.NormalPage;
 public class Main {
     public static void main(String[] args) {
 
-            LoginGUI gui = new LoginGUI();
+            NormalPage page = new NormalPage();
+
 
 
 

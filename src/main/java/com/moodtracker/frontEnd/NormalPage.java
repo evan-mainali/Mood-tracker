@@ -6,9 +6,11 @@ import com.moodtracker.CurrentDate;
 import  com.moodtracker.OutdoorTime;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class NormalPage extends JFrame {
+public class NormalPage extends JFrame{
     JLabel labelCalendar;
     private JPanel panel;
     private JLabel labelDate;
@@ -19,8 +21,9 @@ public class NormalPage extends JFrame {
     private JLabel outdoorTime;
     private JTextField textOut;
     private JTable table;
+    private JButton submitButton;
 
-    public NormalPage(){
+    public NormalPage() {
 
         OutdoorTime time = new OutdoorTime("evan",18);
         setSize(1000,1000);
@@ -68,17 +71,32 @@ public class NormalPage extends JFrame {
 
         table= new JTable(calendarData,columnNames);
         table.setEnabled(false); // allows no interaction
-        table.setRowHeight(30);
+        table.setRowHeight(20);
 
         JScrollPane calendarScroll = new JScrollPane(table);
-        calendarScroll.setBounds(100, 350, 700, 200);
+        calendarScroll.setBounds(100, 350, 700, 142);
 
         labelCalendar = new JLabel(calendar.getMonthString()+" Calendar "+calendar.getCurrentYear());
         labelCalendar.setBounds(100,310,350,30);
         labelCalendar.setFont(new Font("arial",Font.BOLD,15));
 
+        submitButton = new JButton("Submit");
+        submitButton.setBounds(30,250,150,30);
+        submitButton.addActionListener(e-> {
 
+            time.validateHours(textOut.getText());
+            if(time.getChecker()){
 
+                JOptionPane.showMessageDialog(this,"ok");
+                return;
+            }
+            else{
+
+                JOptionPane.showMessageDialog(this,"please enter numbers");
+
+            }
+
+        });
 
 
 
@@ -91,10 +109,15 @@ public class NormalPage extends JFrame {
         panel.add(textOut);
         add(labelDate);
         add(panel);
-        add(calendarScroll);
-        add(labelCalendar);
+        panel.add(submitButton);
+
+       add(calendarScroll); // allows you to see the entire thingadd(labelCalendar);
 
         setVisible(true);
 
     }
+
+
+
+
 }

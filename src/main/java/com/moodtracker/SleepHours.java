@@ -13,7 +13,7 @@ public class SleepHours extends CurrentDate {
 
     private int age;
 
-    public SleepHours(String name,int age,int hours){
+    public SleepHours(String name,int age){
         this.name=name;
         this.hours=hours;
         this.age=age;
@@ -36,6 +36,13 @@ public class SleepHours extends CurrentDate {
 
     public int getHours(){
         return hours;
+    }
+
+    public void validateHours(){
+
+
+
+
     }
 
 

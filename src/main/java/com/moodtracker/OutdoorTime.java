@@ -8,6 +8,7 @@ public class OutdoorTime extends Weather{
     private String name;
     private int age;
     private int hours;
+    private boolean checker;
 
     public OutdoorTime(String name, int age) {
         this.name = name;
@@ -15,29 +16,6 @@ public class OutdoorTime extends Weather{
 
 
     }
-    public void askOutdoorHours() {
-        Scanner input = new Scanner(System.in);
-
-        while (true) {
-            System.out.print("How long were you outside for: ");
-
-            if (input.hasNextInt()) {
-                hours = input.nextInt();
-
-                if (hours >= 0) { // Accept only non-negative integers
-                    break;
-                } else {
-                    System.out.println("Number has to be positive or zero.");
-                }
-            } else {
-                System.out.println("Input has to be an integer. Try again.");
-                input.next(); // Clear the invalid input
-            }
-
-        }
-
-    }
-
     public int getHours(){
 
         return hours;
@@ -46,8 +24,29 @@ public class OutdoorTime extends Weather{
     public int sunshineHours(){
 
         return (int)getWeatherArray()[6];
-
-
     }
+
+
+    public void validateHours(String data){
+        checker= false;
+        try{
+            int number = Integer.parseInt(data);
+            hours = number;
+            System.out.println("correct");
+            checker=true;
+
+        }
+
+        catch(NumberFormatException e){
+            System.out.println("wrong");
+        }
+    }
+
+    public boolean getChecker(){
+        return checker;
+    }
+
+
+
 
 }
