@@ -12,11 +12,11 @@ public class SleepHours extends CurrentDate {
     private String name;
 
     private int age;
+    private boolean checker;
+    private boolean checkerNull=false;
 
-    public SleepHours(String name,int age){
-        this.name=name;
-        this.hours=hours;
-        this.age=age;
+    public SleepHours(){
+
         fileSleepHours();
     }
 
@@ -38,11 +38,32 @@ public class SleepHours extends CurrentDate {
         return hours;
     }
 
-    public void validateHours(){
+    public void validateHours(String hours){
+        if(hours!=null) {
+            try {
+                this.hours = Integer.parseInt(hours);
+                checker = true;
+            } catch (NumberFormatException e) {
 
+                checker = false;
+            }
+        }
 
+        else{
 
+            checkerNull=true;
 
+        }
+
+    }
+
+    public boolean getChecker(){
+
+        return checker;
+    }
+
+    public boolean isCheckerNull(){
+        return checkerNull;
     }
 
 

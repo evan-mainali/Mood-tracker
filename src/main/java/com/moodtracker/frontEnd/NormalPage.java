@@ -1,9 +1,8 @@
 package com.moodtracker.frontEnd;
 
 import javax.swing.*;
-import com.moodtracker.Calendar;
-import com.moodtracker.CurrentDate;
-import  com.moodtracker.OutdoorTime;
+
+import com.moodtracker.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,22 +17,23 @@ public class NormalPage extends JFrame{
     private JLabel exerciseHours;
     private JLabel sleepHour;
     private JTextField textSleep;
-    private JLabel outdoorTime;
+    private JLabel timeOut;
     private JTextField textOut;
     private JTable table;
     private JButton submitButton;
 
     public NormalPage() {
 
-        OutdoorTime time = new OutdoorTime("evan",18);
+
         setSize(1000,1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Normal Page");
         setLayout(null);
         CurrentDate date = new CurrentDate();
         Calendar calendar = new Calendar(date.getCurrentYear(), date.getCurrentMonth());
-
-        int x = 1000-500;
+        OutdoorTime outDoortime = new OutdoorTime();
+        ExerciseHours hoursExercised= new ExerciseHours();
+        SleepHours sleptTime = new SleepHours();
 
         labelDate = new JLabel(String.valueOf(calendar.getCurrentday()+"-"+ calendar.getMonthString()+ "-"+calendar.getCurrentYear())); // displays current
                                                                                                                                             // date on top right
@@ -58,8 +58,8 @@ public class NormalPage extends JFrame{
         textSleep.setBounds(30,100,250,20);
 
 
-        outdoorTime = new JLabel("<html>Enter how long you were outdoor in the sun for<br>Total Sunshine hours available is " + time.sunshineHours() +" hours" +"</html>");
-        outdoorTime.setBounds(30,150,550,30);
+        timeOut = new JLabel("<html>Enter how long you were outdoor in the sun for<br>Total Sunshine hours available today is " + outDoortime.sunshineHours() +" hours" +"</html>");
+        timeOut.setBounds(30,150,550,30);
 
 
 
@@ -82,19 +82,35 @@ public class NormalPage extends JFrame{
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(30,250,150,30);
+
         submitButton.addActionListener(e-> {
 
-            time.validateHours(textOut.getText());
-            if(time.getChecker()){
+           outDoortime.validateHours(textOut.getText());
+           hoursExercised.validateHours(textExer.getText());
+           sleptTime.validateHours(textSleep.getText());
 
-                JOptionPane.showMessageDialog(this,"ok");
-                return;
-            }
-            else{
+           if(outDoortime.getChecker() && hoursExercised.getChecker() && sleptTime.getChecker()){
 
-                JOptionPane.showMessageDialog(this,"please enter numbers");
+               JOptionPane.showMessageDialog(this, "OK");
+           }
 
-            }
+           else if(outDoortime.isCheckerNull() || hoursExercised.isCheckerNull() || sleptTime.isCheckerNull()){
+               JOptionPane.showMessageDialog(this,"enter something for one");
+               return;
+           }
+
+
+           else{
+
+               JOptionPane.showMessageDialog(this, "Invalid");
+               return;
+           }
+
+
+
+
+
+
 
         });
 
@@ -105,13 +121,13 @@ public class NormalPage extends JFrame{
         panel.add(textExer);
         panel.add(sleepHour);
         panel.add(textSleep);
-        panel.add(outdoorTime);
+        panel.add(timeOut);
         panel.add(textOut);
         add(labelDate);
         add(panel);
         panel.add(submitButton);
 
-       add(calendarScroll); // allows you to see the entire thingadd(labelCalendar);
+       add(calendarScroll);
 
         setVisible(true);
 

@@ -13,29 +13,15 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
     private int age;
 
-    public ExerciseHours(String name, int age){
-        this.name=name;
-        this.age=age;
-        askExerciseHours();
+    private boolean checker;
+
+    private boolean checkerNull=false;
+
+    public ExerciseHours(){
+
         exerciseFileWriter();
     }
 
-    private void askExerciseHours(){ // validates the input of hours
-        while(true){
-            System.out.print("Enter how long you have excercised for today ");
-            Scanner input = new Scanner(System.in);
-            if(input.hasNextInt()){
-                hours=input.nextInt();
-                break;
-            }
-
-            else{
-                System.out.println("Invalid data, try again");
-
-            }
-
-        }
-    }
     private void exerciseFileWriter(){ // writes the hours of exercise done to a file
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Excercise.txt", true)); // stores excercise hour in a file
@@ -49,8 +35,41 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
         }
     }
 
+
+
+
+    public void validateHours(String hours){
+        if(hours !=null) {
+            checker = false;
+
+            try {
+                this.hours = Integer.parseInt(hours);
+                checker = true;
+            }
+            catch (NumberFormatException e) {
+                checker = false;
+
+            }
+        }
+
+        else{
+
+            checkerNull =true;
+        }
+
+
+
+    }
     public int getExerciseHours(){ // this is just a getter for the hours if required
+
         return hours;
     }
 
+    public boolean getChecker(){
+        return checker;
+    }
+
+    public boolean isCheckerNull(){
+        return  checkerNull;
+    }
 }

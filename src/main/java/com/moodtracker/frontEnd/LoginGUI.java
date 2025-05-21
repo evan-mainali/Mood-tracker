@@ -107,6 +107,15 @@ public class LoginGUI extends JFrame {
 
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public int getAge(){
+        return age;
+    }
+
+
 
 
 

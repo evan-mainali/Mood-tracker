@@ -9,10 +9,10 @@ public class OutdoorTime extends Weather{
     private int age;
     private int hours;
     private boolean checker;
+    private boolean checkerNull=false;
 
-    public OutdoorTime(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public OutdoorTime() {
+
 
 
     }
@@ -28,22 +28,29 @@ public class OutdoorTime extends Weather{
 
 
     public void validateHours(String data){
-        checker= false;
-        try{
-            int number = Integer.parseInt(data);
-            hours = number;
-            System.out.println("correct");
-            checker=true;
+        if(data!=null) {
+            try {
+                int number = Integer.parseInt(data);
+                hours = number;
+                System.out.println("correct");
+                checker = true;
 
+            } catch (NumberFormatException e) {
+                checker = false;
+            }
         }
+        else{
+            checkerNull=true;
 
-        catch(NumberFormatException e){
-            System.out.println("wrong");
         }
     }
 
     public boolean getChecker(){
         return checker;
+    }
+
+    public boolean isCheckerNull(){
+        return checkerNull;
     }
 
 
