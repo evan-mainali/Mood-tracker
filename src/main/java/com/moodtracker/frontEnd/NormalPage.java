@@ -106,6 +106,8 @@ public class NormalPage extends JFrame{
                return;
            }
 
+           setVisible(false);
+           PlaceHolder holder = new PlaceHolder();
 
 
 

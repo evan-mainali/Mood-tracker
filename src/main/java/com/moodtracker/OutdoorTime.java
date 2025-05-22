@@ -11,6 +11,7 @@ public class OutdoorTime extends Weather{
     private boolean checker;
     private boolean checkerNull=false;
 
+
     public OutdoorTime() {
 
 
@@ -32,6 +33,11 @@ public class OutdoorTime extends Weather{
             try {
                 int number = Integer.parseInt(data);
                 hours = number;
+                if(number>sunshineHours()){
+                    checker=false;
+
+                }
+
                 System.out.println("correct");
                 checker = true;
 
