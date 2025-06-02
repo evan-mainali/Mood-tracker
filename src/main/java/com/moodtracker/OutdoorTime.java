@@ -16,13 +16,9 @@ public class OutdoorTime extends Weather{
     private boolean greaterTimeEntered;
     CurrentDate date=new CurrentDate();
 
-    public OutdoorTime() {
+    public OutdoorTime() { }
 
-
-
-    }
     public int getHours(){
-
         return hours;
     }
 
@@ -38,14 +34,14 @@ public class OutdoorTime extends Weather{
                 int number = Integer.parseInt(data);
                 hours = number;
                 if(number>sunshineHours()){
-                    checker=false;
                     greaterTimeEntered=true;
 
                 }
                 else {
                     greaterTimeEntered = false;
-                    checker=true;
+
                 }
+                checker=true;
 
             } catch (NumberFormatException e) {
                 checker = false;
