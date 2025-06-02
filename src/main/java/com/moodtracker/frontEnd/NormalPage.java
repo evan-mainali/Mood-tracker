@@ -22,6 +22,8 @@ public class NormalPage extends JFrame{
     private JTable table;
     private JButton submitButton;
 
+    private static int lines=0;
+
     public NormalPage() {
 
 
@@ -89,25 +91,47 @@ public class NormalPage extends JFrame{
            hoursExercised.validateHours(textExer.getText());
            sleptTime.validateHours(textSleep.getText());
 
-           if(outDoortime.getChecker() && hoursExercised.getChecker() && sleptTime.getChecker()){
+            if(outDoortime.isCheckerNull()){
+                JOptionPane.showMessageDialog(this,"enter something for time spent in sun");
+                return;
+            }
+            else if(hoursExercised.isCheckerNull()){
+                JOptionPane.showMessageDialog(this,"enter something for how long you exercised");
+                return;
+            }
+            else if(sleptTime.isCheckerNull()){
+                JOptionPane.showMessageDialog(this,"enter something for how long you slept");
+                return;
+            }
+            else if(!outDoortime.getChecker()){
 
-               JOptionPane.showMessageDialog(this, "OK");
-           }
+                JOptionPane.showMessageDialog(this,"invalid time in sun");
+                return;
+            }
+            else if(outDoortime.getGreaterTimeEntered()){
+                JOptionPane.showMessageDialog(this,"enter less time than number shown for sunshine hours");
+                return;
+            }
+            else if(!hoursExercised.getChecker()){
+                JOptionPane.showMessageDialog(this,"invalid input for exercised hours");
+                return;
+            }
+            else if(!sleptTime.getChecker()){
+                JOptionPane.showMessageDialog(this,"invalid input for slept time");
+                return;
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Valid inputs");
+            }
 
-           else if(outDoortime.isCheckerNull() || hoursExercised.isCheckerNull() || sleptTime.isCheckerNull()){
-               JOptionPane.showMessageDialog(this,"enter something for one");
-               return;
-           }
 
+            outDoortime.fileOutdoorTime(); // files input
+            sleptTime.fileSleepHours(); // files input
+            hoursExercised.fileExerciseHours(); // files input
+            lines++;
 
-           else{
-
-               JOptionPane.showMessageDialog(this, "Invalid");
-               return;
-           }
-
-           setVisible(false);
-           PlaceHolder holder = new PlaceHolder();
+            setVisible(false);
+            PlaceHolder holder = new PlaceHolder(outDoortime.getHours(),hoursExercised.getExerciseHours(),sleptTime.getHours());
 
 
 
@@ -115,9 +139,6 @@ public class NormalPage extends JFrame{
 
 
         });
-
-
-
 
         panel.add(exerciseHours);
         panel.add(textExer);

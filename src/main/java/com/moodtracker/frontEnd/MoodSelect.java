@@ -52,7 +52,7 @@ public class MoodSelect extends JFrame {
         }
         else {
 
-            wordWrite(); // calls wordWrite method
+            wordWriteGUI(); // calls wordWrite method
         }
 
 
@@ -141,7 +141,7 @@ public class MoodSelect extends JFrame {
     }
 
 
-    private void wordWrite(){ // method collects written mood of person
+    private void wordWriteGUI(){ // method collects written mood of person
 
         JLabel label = new JLabel("Enter your mood here");
         label.setBounds(0, 0, 400, 25);

@@ -19,13 +19,13 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
     public ExerciseHours(){
 
-        exerciseFileWriter();
+
     }
 
-    private void exerciseFileWriter(){ // writes the hours of exercise done to a file
+    public void fileExerciseHours(){ // writes the hours of exercise done to a file
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("Excercise.txt", true)); // stores excercise hour in a file
-            writer.write(name+" "+age+" "+getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Exercise.txt", true)); // stores excercise hour in a file
+            writer.write(getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+hours);
             writer.newLine();
             writer.close();
         }

@@ -1,5 +1,8 @@
 package com.moodtracker;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class OutdoorTime extends Weather{
@@ -10,7 +13,8 @@ public class OutdoorTime extends Weather{
     private int hours;
     private boolean checker;
     private boolean checkerNull=false;
-
+    private boolean greaterTimeEntered;
+    CurrentDate date=new CurrentDate();
 
     public OutdoorTime() {
 
@@ -35,11 +39,13 @@ public class OutdoorTime extends Weather{
                 hours = number;
                 if(number>sunshineHours()){
                     checker=false;
+                    greaterTimeEntered=true;
 
                 }
-
-                System.out.println("correct");
-                checker = true;
+                else {
+                    greaterTimeEntered = false;
+                    checker=true;
+                }
 
             } catch (NumberFormatException e) {
                 checker = false;
@@ -59,6 +65,18 @@ public class OutdoorTime extends Weather{
         return checkerNull;
     }
 
+    public boolean getGreaterTimeEntered(){ return greaterTimeEntered;}
+
+    public void fileOutdoorTime(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("OutdoorTime.txt", true));
+            writer.write(date.getCurrentday()+"-"+ date.getCurrentMonth()+"-"+ date.getCurrentYear()+" "+getHours());
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
