@@ -1,4 +1,5 @@
 package com.moodtracker;
+import com.moodtracker.frontEnd.ColorSelect;
 import com.moodtracker.frontEnd.LoginGUI;
 import com.moodtracker.frontEnd.MoodSelect;
 import com.moodtracker.frontEnd.NormalPage;
@@ -9,6 +10,8 @@ import javax.swing.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
+
 
 
 

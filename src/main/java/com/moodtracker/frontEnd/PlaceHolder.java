@@ -28,6 +28,4 @@ public class PlaceHolder extends JFrame {
         add(area);
 
     }
-
-
 }
