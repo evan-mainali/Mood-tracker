@@ -1,5 +1,7 @@
 package com.moodtracker.frontEnd;
 
+import com.moodtracker.Mood;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -12,11 +14,13 @@ public class MoodSelect extends JFrame {
     private JLabel labelNumbers;
     private JTextField text;
 
-    private String word;
+
     private String emojiMood;
     private String numberMood;
 
-    private String[] mood = {"HAPPY","SAD","ANGRY","THRILLED","E","5","7","F"};
+    private String[] mood = {"Happy","Sad","Angry","Anxious",
+            "Loving","Confident","Tired",
+            "Playful"};
     private String moodPicked="";
 
     private Integer[] numbers = {1,2,3,4,5,6,7,8};
@@ -78,14 +82,19 @@ public class MoodSelect extends JFrame {
                     return; // stop here
                 }
 
-                word = input; // store valid input
+                moodPicked = input; // store valid input
                 JOptionPane.showMessageDialog(this, "Thanks! Mood recorded.");
-
-
+            }
+            else if (randomNumber==1){
+                moodPicked=e.getActionCommand();
 
             }
-
+            else{
+             moodPicked = mood[Integer.parseInt(e.getActionCommand())];
+            }
             setVisible(false);
+            Mood mood = new Mood(moodPicked);
+            mood.fileMood();
 
             NormalPage page = new NormalPage();
         });
@@ -94,7 +103,8 @@ public class MoodSelect extends JFrame {
     }
 
     private void emojiSelector() { // asks user to select emoji from pop up box
-        String[] emojis = { "😀", "😂", "😍", "😎", "😢", "😡", "👍", "🎉" };
+        String[] emojis ={ "😊", "😔",  "😠", "😨", "😍", "😎", "😴", "🤪"  };
+        // Happy,Sad,Angry,Anxious,Loving,Confident,Tired,Playful
 
         JComboBox<String> moodbox = new JComboBox<>(emojis);
         moodbox.setBounds(0, 30, 300, 30); // Position inside panel
@@ -129,7 +139,6 @@ public class MoodSelect extends JFrame {
     private void numberSelector(){ //method for choosing number for mood
 
 
-
         JComboBox box = new JComboBox<Integer>(numbers);
 
         labelNumbers = new JLabel("Select a number for how you feel");
@@ -138,6 +147,8 @@ public class MoodSelect extends JFrame {
 
         panel.add(box);
         panel.add(labelNumbers);
+
+
     }
 
 
@@ -151,6 +162,8 @@ public class MoodSelect extends JFrame {
 
         panel.add(label);
         panel.add(text);
+
+
 
 
 

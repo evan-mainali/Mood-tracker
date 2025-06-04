@@ -23,7 +23,6 @@ public class OutdoorTime extends Weather{
     }
 
     public int sunshineHours(){
-
         return (int)getWeatherArray()[6];
     }
 
@@ -73,7 +72,4 @@ public class OutdoorTime extends Weather{
             e.printStackTrace();
         }
     }
-
-
-
 }
