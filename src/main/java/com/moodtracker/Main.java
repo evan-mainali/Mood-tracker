@@ -1,8 +1,5 @@
 package com.moodtracker;
-import com.moodtracker.frontEnd.ColorSelect;
-import com.moodtracker.frontEnd.LoginGUI;
-import com.moodtracker.frontEnd.MoodSelect;
-import com.moodtracker.frontEnd.NormalPage;
+import com.moodtracker.frontEnd.*;
 
 import javax.swing.*;
 
@@ -12,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-
+        MoodSelect select =new MoodSelect();
 
 
 

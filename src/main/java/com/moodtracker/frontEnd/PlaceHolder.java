@@ -7,7 +7,7 @@ public class PlaceHolder extends JFrame {
     private int outdoorTime; // stores outdoor time
     private int exerciseTime; // stores exercising hours time
     private int sleepingTime;
-
+    private JTextField moodText;
     private JTextArea area;
 
     public PlaceHolder(int outdoor, int exercise, int sleeping){
@@ -25,6 +25,10 @@ public class PlaceHolder extends JFrame {
         area = new JTextArea(" "+outdoorTime+" "+exerciseTime+" "+sleepingTime);
         area.setBounds(0,0,1000,1000);
         setVisible(true);
+
+        moodText = new JTextField(MoodSelect.getMood());
+        moodText.setBounds(0,30,100,100);
+        add(moodText);
         add(area);
 
     }

@@ -21,7 +21,7 @@ public class MoodSelect extends JFrame {
     private String[] mood = {"Happy","Sad","Angry","Anxious",
             "Loving","Confident","Tired",
             "Playful"};
-    private String moodPicked="";
+    private static String moodPicked="";
 
     private Integer[] numbers = {1,2,3,4,5,6,7,8};
     Random random;
@@ -85,13 +85,8 @@ public class MoodSelect extends JFrame {
                 moodPicked = input; // store valid input
                 JOptionPane.showMessageDialog(this, "Thanks! Mood recorded.");
             }
-            else if (randomNumber==1){
-                moodPicked=e.getActionCommand();
 
-            }
-            else{
-             moodPicked = mood[Integer.parseInt(e.getActionCommand())];
-            }
+
             setVisible(false);
             Mood mood = new Mood(moodPicked);
             mood.fileMood();
@@ -114,8 +109,6 @@ public class MoodSelect extends JFrame {
         label.setBounds(0, 0, 400, 25);
 
         panel.add(label);
-
-
 
         moodbox.addActionListener(e-> {
 
@@ -148,6 +141,8 @@ public class MoodSelect extends JFrame {
         panel.add(box);
         panel.add(labelNumbers);
 
+        moodPicked = mood[Integer.parseInt(labelNumbers.getText())];
+
 
     }
 
@@ -162,11 +157,10 @@ public class MoodSelect extends JFrame {
 
         panel.add(label);
         panel.add(text);
+    }
 
-
-
-
-
+    public static String getMood(){
+        return moodPicked;
     }
 
 
