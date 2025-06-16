@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        MoodSelect select =new MoodSelect();
+        MoodSelect select = new MoodSelect();
+
 
 
 

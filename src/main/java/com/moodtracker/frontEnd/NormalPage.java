@@ -5,9 +5,6 @@ import javax.swing.*;
 import com.moodtracker.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class NormalPage extends JFrame{
     JLabel labelCalendar;
@@ -131,7 +128,7 @@ public class NormalPage extends JFrame{
             lines++;
 
             setVisible(false);
-            PlaceHolder holder = new PlaceHolder(outDoortime.getHours(),hoursExercised.getExerciseHours(),sleptTime.getHours());
+            PieChart chart = new PieChart();
 
 
 

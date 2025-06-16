@@ -64,7 +64,7 @@ public class MoodSelect extends JFrame {
         submitButton = new JButton("Submit"); // makes a submit button
         submitButton.setBounds(50,350,150,100);
         panel.add(submitButton);
-
+        setVisible(true);
 
         submitButton.addActionListener(e-> {
 
@@ -94,7 +94,7 @@ public class MoodSelect extends JFrame {
             NormalPage page = new NormalPage();
         });
 
-        setVisible(true);
+
     }
 
     private void emojiSelector() { // asks user to select emoji from pop up box

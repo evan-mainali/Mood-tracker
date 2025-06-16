@@ -96,6 +96,9 @@ public class ColorSelect extends JFrame {
         buttonSubmit.addActionListener(e -> {
 
                     validateColors();
+                    setVisible(false);
+                    MoodSelect moodSelect = new MoodSelect();
+
 
                 });
         panel.add(buttonSubmit);
