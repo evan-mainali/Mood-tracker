@@ -90,19 +90,21 @@ public class ColorSelect extends JFrame {
         });
 
 
+
+
         buttonSubmit = new JButton("Submit");
         buttonSubmit.setBounds(20,300,100,30);
+        panel.add(buttonSubmit);
 
         buttonSubmit.addActionListener(e -> {
 
                     validateColors();
-                    setVisible(false);
-                    MoodSelect moodSelect = new MoodSelect();
 
 
                 });
-        panel.add(buttonSubmit);
         setVisible(true);
+
+
     }
 
 
@@ -132,16 +134,12 @@ public class ColorSelect extends JFrame {
         }
 
         JOptionPane.showMessageDialog(this, "OK", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-        // Proceed to next page
-        MoodSelect page = new MoodSelect();
         setVisible(false);
+        MoodSelect moodSelect = new MoodSelect();
+        // Proceed to next page
+
 
 
 
     }
-
-
-
-
 }

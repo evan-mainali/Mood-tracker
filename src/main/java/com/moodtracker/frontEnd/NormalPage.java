@@ -128,7 +128,7 @@ public class NormalPage extends JFrame{
             lines++;
 
             setVisible(false);
-            PieChart chart = new PieChart();
+            Chart chart = new Chart();
 
 
 

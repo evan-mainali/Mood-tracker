@@ -8,10 +8,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-
-        MoodSelect select = new MoodSelect();
-
-
+        NormalPage page = new NormalPage();
 
 
 
