@@ -10,7 +10,8 @@ public class UserInfo {
     private int age;
     private String mood;
 
-
+    private static List<Double> percentage = new ArrayList<>();
+    private static List<String> moods = new ArrayList<>();
 
     public UserInfo(String date, String mood){ // this class will print out the user info links related to their mood.
         this.date=date;
@@ -33,13 +34,13 @@ public class UserInfo {
     } // getter for mood
 
     // Manual Mood Percentage Calculation (No Shortcuts)
-    public static void calculateMoodPercentage(List<UserInfo>userInfos) { // method to cslculate mood as percentages from Mood.txt file
+    public static void calculateMoodPercentage(List<UserInfo>userInfos) { // method to calculate mood as percentages from Mood.txt file
         // Step 1: Count the total number of users
         int totalUsers = userInfos.size();
 
 
         // Step 2: Manually count the number of each mood
-        List<String> moods = new ArrayList<>();
+
         List<Integer> moodCounts = new ArrayList<>();
 
         for (UserInfo userInfo : userInfos) {
@@ -64,11 +65,22 @@ public class UserInfo {
 
         // Step 3: Calculate and print percentages manually
         for (int i = 0; i < moods.size(); i++) {
-            double percentage = (moodCounts.get(i) * 100.0) / totalUsers;
-            double rounded = Math.round(percentage*100.0)/100.0;
+            double percentages = (moodCounts.get(i) * 100.0) / totalUsers;
+            double rounded = Math.round(percentages*100.0)/100.0;
+            percentage.add(rounded);
 
-            System.out.println(moods.get(i) + ": " + rounded + "%");
         }
+
+    }
+
+    public static List<String> getMoods(){
+
+        return moods;
+    }
+
+    public static List<Double> getPercentage(){
+        return percentage;
+
     }
 
 

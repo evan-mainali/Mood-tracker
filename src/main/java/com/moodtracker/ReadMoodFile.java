@@ -6,15 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadFiles {
+public class ReadMoodFile {
 
-
+    private int lineNumber=0;
     private static final String FILENAME = "Mood.txt";
 
     private static int lineCounter=1;
 
 
-    public ReadFiles() {
+    public ReadMoodFile() {
 
     }
 
@@ -29,18 +29,20 @@ public class ReadFiles {
                 String mood = lines[1];
                 UserInfo userInfo = new UserInfo(date,mood);
                 userInfos.add(userInfo);
+                lineNumber++;
 
             }
 
 
         }
         catch (IOException e) {
-
             e.printStackTrace();
         }
         return userInfos;
     }
-
+    public int getLineNumber(){
+        return lineNumber;
+    }
 
 
 }

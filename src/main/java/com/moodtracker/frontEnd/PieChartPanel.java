@@ -8,6 +8,7 @@ import java.awt.*;
 public class PieChartPanel extends JPanel {
     private Color[] chartColours = ColorSelect.getColourArray();
 
+
      private int[] data = {40,30,25};
 
      @Override

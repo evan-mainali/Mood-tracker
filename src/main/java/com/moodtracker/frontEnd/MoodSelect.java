@@ -31,7 +31,7 @@ public class MoodSelect extends JFrame {
     public MoodSelect() {
 
         random = new Random(); // ca;; Random class
-        randomNumber=random.nextInt(3)+1; // make a random number appear between 1 and 3 to choose one
+        randomNumber=random.nextInt(2)+1; // make a random number appear between 1 and 2
         // of the mood methods to display.
 
 
@@ -51,14 +51,11 @@ public class MoodSelect extends JFrame {
             emojiSelector(); // calls emoji selector method
         }
 
-        else if(randomNumber==2){
+        else{
 
             numberSelector(); // calls numberSelector method
         }
-        else {
 
-            wordWriteGUI(); // calls wordWrite method
-        }
 
 
 
@@ -68,25 +65,6 @@ public class MoodSelect extends JFrame {
         setVisible(true);
 
         submitButton.addActionListener(e-> {
-
-            if (randomNumber==3) {  // Only validate if wordWrite is shown
-                String input = text.getText().trim();
-
-                if (input.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "You must enter a mood.");
-                    return; // stop here
-                }
-
-                String[] words = input.split("\\s+");
-                if (words.length > 1) {
-                    JOptionPane.showMessageDialog(this, "Please enter no more than one word.");
-                    return; // stop here
-                }
-
-                moodPicked = input; // store valid input
-                JOptionPane.showMessageDialog(this, "Thanks! Mood recorded.");
-            }
-
 
             setVisible(false);
             Mood mood = new Mood(moodPicked);
@@ -149,17 +127,7 @@ public class MoodSelect extends JFrame {
     }
 
 
-    private void wordWriteGUI(){ // method collects written mood of person
 
-        JLabel label = new JLabel("Enter your mood here");
-        label.setBounds(0, 0, 400, 25);
-
-        text = new JTextField();
-        text.setBounds(0, 30, 300, 30);
-
-        panel.add(label);
-        panel.add(text);
-    }
 
     public static String getMood(){
         return moodPicked;
