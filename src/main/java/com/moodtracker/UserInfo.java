@@ -1,5 +1,6 @@
 package com.moodtracker;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,14 @@ public class UserInfo {
     private String mood;
 
 
-    public UserInfo(String name, int age, String date, String mood){ // this class will print out the user info links related to their mood.
-        this.name=name;
-        this.age=age;
+
+    public UserInfo(String date, String mood){ // this class will print out the user info links related to their mood.
         this.date=date;
         this.mood=mood;
+    }
+    public UserInfo(String name,int age){ // different constructor fot UserInfo to store name and age
+        this.name=name;
+        this.age=age;
     }
 
 
@@ -29,7 +33,7 @@ public class UserInfo {
     } // getter for mood
 
     // Manual Mood Percentage Calculation (No Shortcuts)
-    public static void calculateMoodPercentage(List<UserInfo> userInfos) { // method to cslculate mood as percentages from Mood.txt file
+    public static void calculateMoodPercentage(List<UserInfo>userInfos) { // method to cslculate mood as percentages from Mood.txt file
         // Step 1: Count the total number of users
         int totalUsers = userInfos.size();
 
@@ -59,10 +63,11 @@ public class UserInfo {
         }
 
         // Step 3: Calculate and print percentages manually
-        System.out.println("Data so far is");
         for (int i = 0; i < moods.size(); i++) {
             double percentage = (moodCounts.get(i) * 100.0) / totalUsers;
-            System.out.println(moods.get(i) + ": " + percentage + "%");
+            double rounded = Math.round(percentage*100.0)/100.0;
+
+            System.out.println(moods.get(i) + ": " + rounded + "%");
         }
     }
 

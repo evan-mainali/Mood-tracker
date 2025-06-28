@@ -29,7 +29,7 @@ public class LoginGUI extends JFrame {
             nameLabel = new JLabel("Enter name"); // creates label for name
             nameLabel.setBounds(50,55,200,30);
             nameLabel.setForeground(Color.BLACK);
-            nameLabel.setFont(new Font("MV Boli",Font.BOLD,18)); // creates font size and type
+            nameLabel.setFont(new Font("arial",Font.BOLD,18)); // creates font size and type
 
             textUsername = new JTextField(); //creates text field for name
             textUsername.setBounds(50, 90, 200, 30);
@@ -38,7 +38,7 @@ public class LoginGUI extends JFrame {
             ageLabel = new JLabel("Enter age"); //creates label for age
             ageLabel.setBounds(50,120,200,30);
             ageLabel.setForeground(Color.BLACK);
-            ageLabel.setFont(new Font("MV Boli",Font.BOLD,18)); // creates font size and type
+            ageLabel.setFont(new Font("arial",Font.BOLD,18)); // creates font size and type
 
             textAge = new JTextField(); // creates text field for age
             textAge.setBounds(50,150,200,30);

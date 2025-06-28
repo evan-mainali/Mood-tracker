@@ -7,15 +7,15 @@ public class ColorSelect extends JFrame {
 
     private JLabel labelHappy;
 
-    private String colorHappy;
-    private String colorSad;
-    private String colorRegular;
+    private static Color colorHappy;
+    private static Color colorSad;
+    private static Color colorRegular;
 
-    private JLabel labelSad;
+    private  JLabel labelSad;
 
     private JPanel panel;
 
-    private JLabel labelRegular;
+    private  JLabel labelRegular;
 
     private Color[] backgroundColor = {Color.RED,Color.GREEN,Color.YELLOW,Color.BLACK,
             Color.WHITE,Color.ORANGE,Color.MAGENTA,Color.CYAN      } ;
@@ -72,19 +72,19 @@ public class ColorSelect extends JFrame {
         box.addActionListener(e -> { // happy mood select;
             String action = (String) box.getSelectedItem();
             changeBackground(action);
-            colorHappy=action;
+            colorHappy= StringToColor(action);
         });
 
         box2.addActionListener(e -> { // sad mood select
             String action = (String) box2.getSelectedItem();
             changeBackground(action);
-            colorSad=action;
+            colorSad=StringToColor(action);
         });
 
         box3.addActionListener( e ->{ // regular mood select
             String action = (String) box3.getSelectedItem();
             changeBackground(action);
-            colorRegular=action;
+            colorRegular=StringToColor(action);
 
 
         });
@@ -141,5 +141,21 @@ public class ColorSelect extends JFrame {
 
 
 
+    }
+
+    public static Color[] getColourArray(){
+        Color[] array = {colorHappy,colorRegular,colorSad};
+        return array;
+
+    }
+
+    private Color StringToColor(String color){
+
+        for(int i =0;i<colors.length;i++){
+            if(color.equals(colors[i])){
+                return backgroundColor[i];
+            }
+        }
+        return Color.BLACK;
     }
 }

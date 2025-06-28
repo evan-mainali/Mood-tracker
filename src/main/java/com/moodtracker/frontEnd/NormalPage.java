@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class NormalPage extends JFrame{
     JLabel labelCalendar;
-    private JPanel panel;
-    private JLabel labelDate;
-    private JTextField textExer;
-    private JLabel exerciseHours;
+    private JPanel panel; // variable for panel with JPanel class
+    private JLabel labelDate; // variable for date with JLabel class
+    private JTextField textExer; // variable for exercise wirh JTextField class
+    private JLabel exerciseHours; //
     private JLabel sleepHour;
     private JTextField textSleep;
     private JLabel timeOut;
@@ -88,52 +88,48 @@ public class NormalPage extends JFrame{
            hoursExercised.validateHours(textExer.getText());
            sleptTime.validateHours(textSleep.getText());
 
-            if(outDoortime.isCheckerNull()){
-                JOptionPane.showMessageDialog(this,"enter something for time spent in sun");
+            if((outDoortime.isCheckerNull() && hoursExercised.isCheckerNull()) && sleptTime.isCheckerNull()){
+                JOptionPane.showMessageDialog(this,"All fields Empty");
+                return;
+            }
+            else if(outDoortime.isCheckerNull()){
+                JOptionPane.showMessageDialog(this,"Time spent in sun is empty");
                 return;
             }
             else if(hoursExercised.isCheckerNull()){
-                JOptionPane.showMessageDialog(this,"enter something for how long you exercised");
+                JOptionPane.showMessageDialog(this,"Time for hours exercised is empty");
                 return;
             }
             else if(sleptTime.isCheckerNull()){
-                JOptionPane.showMessageDialog(this,"enter something for how long you slept");
+                JOptionPane.showMessageDialog(this,"Time slept is empty");
                 return;
             }
-            else if(!outDoortime.getChecker()){
 
-                JOptionPane.showMessageDialog(this,"invalid time in sun");
+            else if(!outDoortime.getChecker()){
+                JOptionPane.showMessageDialog(this,"Invalid type for outdoor time");
                 return;
             }
-            else if(outDoortime.getGreaterTimeEntered()){
-                JOptionPane.showMessageDialog(this,"enter less time than number shown for sunshine hours");
-                return;
-            }
-            else if(!hoursExercised.getChecker()){
-                JOptionPane.showMessageDialog(this,"invalid input for exercised hours");
+
+            else if(outDoortime.isNumberGreater()){
+                JOptionPane.showMessageDialog(this,"number entered is greater");
                 return;
             }
             else if(!sleptTime.getChecker()){
-                JOptionPane.showMessageDialog(this,"invalid input for slept time");
+                JOptionPane.showMessageDialog(this,"Invalid type for sleeping time");
+                return;
+            }
+            else if(!hoursExercised.getChecker()){
+                JOptionPane.showMessageDialog(this,"Invalid type for exercise hours");
                 return;
             }
             else{
-                JOptionPane.showMessageDialog(this,"Valid inputs");
+                JOptionPane.showMessageDialog(this,"all valid inputs");
+                sleptTime.fileSleepHours(); // files input
+                hoursExercised.fileExerciseHours(); // files input
+                outDoortime.fileOutdoorTime();
+                PieChart pieChart = new PieChart();
+                setVisible(false);
             }
-
-
-            outDoortime.fileOutdoorTime(); // files input
-            sleptTime.fileSleepHours(); // files input
-            hoursExercised.fileExerciseHours(); // files input
-            lines++;
-
-            setVisible(false);
-            Chart chart = new Chart();
-
-
-
-
-
 
         });
 
@@ -152,7 +148,6 @@ public class NormalPage extends JFrame{
         setVisible(true);
 
     }
-
 
 
 

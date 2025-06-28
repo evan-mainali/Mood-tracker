@@ -13,7 +13,7 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
     private int age;
 
-    private boolean checker;
+    private boolean checker=true;
 
     private boolean checkerNull=false;
 
@@ -38,26 +38,24 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
 
 
-    public void validateHours(String hours){
-        if(hours !=null) {
+    public void validateHours(String data){
+        if (data == null || data.trim().isEmpty()) {
+            checkerNull = true;
+        }
+
+        try {
+            int number = Integer.parseInt(data);
+            hours = number;
+
+            // Reset flags
+            checkerNull = false;
+            checker = true;
+
+
+        } catch (NumberFormatException e) {
             checker = false;
-
-            try {
-                this.hours = Integer.parseInt(hours);
-                checker = true;
-            }
-            catch (NumberFormatException e) {
-                checker = false;
-
-            }
+             // it's not null, just badly formatted
         }
-
-        else{
-
-            checkerNull =true;
-        }
-
-
 
     }
     public int getExerciseHours(){ // this is just a getter for the hours if required

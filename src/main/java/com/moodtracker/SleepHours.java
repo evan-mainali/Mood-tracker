@@ -17,7 +17,6 @@ public class SleepHours extends CurrentDate {
 
     public SleepHours(){
 
-        fileSleepHours();
     }
 
 
@@ -38,20 +37,23 @@ public class SleepHours extends CurrentDate {
         return hours;
     }
 
-    public void validateHours(String hours){
-        if(hours!=null) {
-            try {
-                this.hours = Integer.parseInt(hours);
-                checker = true;
-            } catch (NumberFormatException e) {
+    public void validateHours(String data){
+        if (data == null || data.trim().isEmpty()) {
+            checkerNull = true;
 
-                checker = false;
-            }
         }
 
-        else{
+        try {
+            int number = Integer.parseInt(data);
+            this.hours = number;
 
-            checkerNull=true;
+
+            checker = true;
+            checkerNull=false;
+
+
+        } catch (NumberFormatException e) {
+            checker = false;
 
         }
 
