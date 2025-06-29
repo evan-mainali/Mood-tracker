@@ -18,20 +18,24 @@ public class MoodSelect extends JFrame {
     private String emojiMood;
     private int numberMood;
 
-    private String[] mood = {"Joyful",      // Positive
-            "Grateful",    // Positive
+    private String[] mood = {
+            "Joyful",      // Positive
             "Motivated",   // Positive
             "Calm",        // Neutral
-            "Content",     // Neutral
-            "Bored",       // Neutral/Negative
-            "Tired",       // Neutral/Negative
+            "Bored",       // Neutral
+            "Tired",       // Neutral
             "Frustrated",  // Negative
             "Anxious",     // Negative
-            "Sad"          // Negative
+            "Sad" ,         // Negative
+            "Happy"         // positive
     };
+
+    private static String[] neutralMoods = {"Calm","Bored","Tired"};
+    private static String[] positiveMoods = {"Happy","Joyful","Motivated"};
+    private static String[] negativeMoods = {"Sad","Anxious","Frustrated"};
     private static String moodPicked="";
 
-    private Integer[] numbers = {1,2,3,4,5,6,7,8,9,10};
+    private Integer[] numbers = {1,2,3,4,5,6,7,8,9};
     Random random;
     int randomNumber;
 
@@ -85,11 +89,11 @@ public class MoodSelect extends JFrame {
     }
 
     private void emojiSelector() { // asks user to select emoji from pop up box
-        String[] emojis = {"😊",  // Joyful
-                "🙏",  // Grateful
+        String[] emojis = {
+                "😊",  // Joyful
+                "😀",  // Happy
                 "💪",  // Motivated
                 "🧘",  // Calm
-                "🙂",  // Content
                 "😐",  // Bored
                 "😴",  // Tired
                 "😤",  // Frustrated
@@ -129,7 +133,7 @@ public class MoodSelect extends JFrame {
     private void numberSelector(){ //method for choosing number for mood
 
 
-        JComboBox box = new JComboBox<Integer>(numbers);
+        JComboBox<Integer> box = new JComboBox<>(numbers);
 
         labelNumbers = new JLabel("Select a number for how you feel"); // creates a JLabel for selecting numbers
         labelNumbers.setBounds(50,0,400,25);
@@ -138,8 +142,12 @@ public class MoodSelect extends JFrame {
         panel.add(box);
         panel.add(labelNumbers);
 
-        numberMood = (Integer)box.getSelectedItem(); // stores number as a mood in variable numberMood
-        moodPicked= mood[numberMood];
+        box.addActionListener(e -> {
+            numberMood = (Integer) box.getSelectedItem();
+            if (numberMood >= 1 && numberMood <= mood.length) {
+                moodPicked = mood[numberMood - 1]; // Adjust for 0-based index
+            }
+        });
 
     }
 
@@ -148,6 +156,17 @@ public class MoodSelect extends JFrame {
 
     public static String getMood(){
         return moodPicked;
+    }
+
+    public static String[] getPositiveMoods(){
+        return positiveMoods;
+    }
+    public static String[] getNeutralMoods(){
+        return neutralMoods;
+    }
+
+    public static String[] getNegativeMoods(){
+        return negativeMoods;
     }
 
 

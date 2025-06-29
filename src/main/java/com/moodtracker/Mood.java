@@ -21,7 +21,7 @@ public class Mood extends CurrentDate {// this class, collects mood, sleep hours
 
 
 
-    public void fileMood() {// writes the private methods in a file
+    public void fileMood() {// writes the mood in a file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("Mood.txt", true))) {
             writer.write(getCurrentday() + "-" + getCurrentMonth() + "-" + getCurrentYear() + " " + mood);
             writer.newLine();
