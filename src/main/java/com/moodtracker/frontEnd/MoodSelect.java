@@ -18,12 +18,20 @@ public class MoodSelect extends JFrame {
     private String emojiMood;
     private int numberMood;
 
-    private String[] mood = {"Happy","Sad","Angry","Anxious",
-            "Loving","Confident","Tired",
-            "Playful"};
+    private String[] mood = {"Joyful",      // Positive
+            "Grateful",    // Positive
+            "Motivated",   // Positive
+            "Calm",        // Neutral
+            "Content",     // Neutral
+            "Bored",       // Neutral/Negative
+            "Tired",       // Neutral/Negative
+            "Frustrated",  // Negative
+            "Anxious",     // Negative
+            "Sad"          // Negative
+    };
     private static String moodPicked="";
 
-    private Integer[] numbers = {1,2,3,4,5,6,7,8};
+    private Integer[] numbers = {1,2,3,4,5,6,7,8,9,10};
     Random random;
     int randomNumber;
 
@@ -77,8 +85,18 @@ public class MoodSelect extends JFrame {
     }
 
     private void emojiSelector() { // asks user to select emoji from pop up box
-        String[] emojis ={ "😊", "😔",  "😠", "😨", "😍", "😎", "😴", "🤪"  };
-        // Happy,Sad,Angry,Anxious,Loving,Confident,Tired,Playful
+        String[] emojis = {"😊",  // Joyful
+                "🙏",  // Grateful
+                "💪",  // Motivated
+                "🧘",  // Calm
+                "🙂",  // Content
+                "😐",  // Bored
+                "😴",  // Tired
+                "😤",  // Frustrated
+                "😰",  // Anxious
+                "😢"   // Sad
+        };
+
 
         JComboBox<String> moodbox = new JComboBox<>(emojis);
         moodbox.setBounds(0, 30, 300, 30); // Position inside panel
@@ -122,7 +140,6 @@ public class MoodSelect extends JFrame {
 
         numberMood = (Integer)box.getSelectedItem(); // stores number as a mood in variable numberMood
         moodPicked= mood[numberMood];
-
 
     }
 
