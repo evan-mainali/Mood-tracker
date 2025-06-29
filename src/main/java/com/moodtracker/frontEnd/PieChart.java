@@ -28,10 +28,6 @@ public class PieChart extends JFrame {
 
         }
 
-
-
-
-
         // Create chart
         JFreeChart pieChart = ChartFactory.createPieChart(
                 "Mood Distribution",
@@ -75,15 +71,12 @@ public class PieChart extends JFrame {
 
     }
 
-
     private void getPercentage(){
         int size = UserInfo.getPercentage().size();
         percentages = new double[size];
         for(int i =0;i<UserInfo.getPercentage().size();i++){
             percentages[i]=UserInfo.getPercentage().get(i);
         }
-
-
     }
 
     private void getColors(){
@@ -94,14 +87,6 @@ public class PieChart extends JFrame {
             colors[i]=ColorSelect.getColourArray()[i];
         }
 
-
     }
-
-
-
-
-
-
-
 
 }
