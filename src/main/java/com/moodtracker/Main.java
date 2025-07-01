@@ -1,6 +1,8 @@
 package com.moodtracker;
 
 import com.moodtracker.frontEnd.ColorSelect;
+import com.moodtracker.frontEnd.MoodSelect;
+import com.moodtracker.frontEnd.NormalPage;
 import com.moodtracker.frontEnd.PieChart;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -9,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ColorSelect select = new ColorSelect();
+        NormalPage page = new NormalPage();
 
 
 
@@ -25,6 +27,4 @@ public class Main {
 
 
     }
-
-
 }

@@ -18,6 +18,8 @@ public class NormalPage extends JFrame{
     private JTextField textOut;
     private JTable table;
     private JButton submitButton;
+    private JLabel water;
+    private JTextField waterText;
 
     private static int lines=0;
 
@@ -58,12 +60,17 @@ public class NormalPage extends JFrame{
 
 
         timeOut = new JLabel("<html>Enter how long you were outdoor in the sun for<br>Total Sunshine hours available today is " + outDoortime.sunshineHours() +" hours" +"</html>");
-        timeOut.setBounds(30,150,550,30);
-
-
+        timeOut.setBounds(30,130,550,30);
 
         textOut = new JTextField();
-        textOut.setBounds(30,190,250,20);
+        textOut.setBounds(30,160,250,20);
+
+        water = new JLabel("Enter water drunk in litres");
+        water.setBounds(30,190,250,20);
+
+        waterText = new JTextField();
+        waterText.setBounds(30,210,250,20);
+
 
         String[][] calendarData = calendar.getMonthCalendar();
         String[] columnNames = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
@@ -142,6 +149,8 @@ public class NormalPage extends JFrame{
         add(labelDate);
         add(panel);
         panel.add(submitButton);
+        panel.add(water);
+        panel.add(waterText);
 
        add(calendarScroll);
 
