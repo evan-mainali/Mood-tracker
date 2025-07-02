@@ -12,8 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
-
-
 public class PieChart extends JFrame {
     private double[] percentages;
 
@@ -62,6 +60,7 @@ public class PieChart extends JFrame {
         // Set chart panel
         ChartPanel chartPanel = new ChartPanel(pieChart);
         setContentPane(chartPanel);
+        chartPanel.setSize(1000,500);
 
         // Configure frame
         setSize(1000, 1000);

@@ -1,17 +1,13 @@
 package com.moodtracker;
 
-import com.moodtracker.frontEnd.ColorSelect;
-import com.moodtracker.frontEnd.MoodSelect;
-import com.moodtracker.frontEnd.NormalPage;
-import com.moodtracker.frontEnd.PieChart;
+import com.moodtracker.frontEnd.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
-
-        ColorSelect select = new ColorSelect();
+        BarChart chart = new BarChart("Bar Chart");
 
 
 
