@@ -63,11 +63,10 @@ public class MoodSelect extends JFrame {
             emojiSelector(); // calls emoji selector method
         }
 
-        else{
+        else if(randomNumber==2){
 
             numberSelector(); // calls numberSelector method
         }
-
 
 
 
@@ -77,6 +76,25 @@ public class MoodSelect extends JFrame {
         setVisible(true);
 
         submitButton.addActionListener(e-> {
+
+            if (randomNumber==3) {  // Only validate if wordWrite is shown
+                String input = text.getText().trim();
+
+                if (input.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "You must enter a mood.");
+                    return; // stop here
+                }
+
+                String[] words = input.split("\\s+");
+                if (words.length > 1) {
+                    JOptionPane.showMessageDialog(this, "Please enter no more than one word.");
+                    return; // stop here
+                }
+
+                moodPicked = input; // store valid input
+                JOptionPane.showMessageDialog(this, "Thanks! Mood recorded.");
+            }
+
 
             setVisible(false);
             Mood mood = new Mood(moodPicked);
@@ -124,7 +142,7 @@ public class MoodSelect extends JFrame {
                 }
 
             }
-                });
+        });
 
         panel.add(moodbox);
     }

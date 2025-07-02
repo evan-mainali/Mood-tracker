@@ -10,7 +10,7 @@ public class OutdoorTime extends Weather{
 
     private String name;
     private int age;
-    private int hours;
+    private double hours;
     private boolean checker=true;
     private boolean checkerNull=false;
     private boolean numberGreater;
@@ -21,7 +21,7 @@ public class OutdoorTime extends Weather{
 
 
     }
-    public int getHours(){
+    public double getHours(){
 
         return hours;
     }
@@ -35,7 +35,7 @@ public class OutdoorTime extends Weather{
     public void validateHours(String data){
         if(data!=null || data.trim().isEmpty()) {
             try {
-                int number = Integer.parseInt(data);
+                double number = Double.parseDouble(data);
                 hours = number;
                 if(number>sunshineHours()){
                     numberGreater=true;

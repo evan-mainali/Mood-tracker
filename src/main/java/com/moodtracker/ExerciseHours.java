@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ExerciseHours extends CurrentDate { // this class is for the exercise hours
 
-    private int hours;
+    private double hours;
 
     private String name;
 
@@ -44,7 +44,7 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
         }
 
         try {
-            int number = Integer.parseInt(data);
+            double number = Double.parseDouble(data);
             hours = number;
 
             // Reset flags
@@ -58,7 +58,7 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
         }
 
     }
-    public int getExerciseHours(){ // this is just a getter for the hours if required
+    public double getExerciseHours(){ // this is just a getter for the hours if required
 
         return hours;
     }

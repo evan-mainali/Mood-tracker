@@ -2,7 +2,7 @@ package com.moodtracker;
 
 public class Water {
 
-    private int water;
+    private double water;
     private boolean checker;
     private boolean isNull;
 
@@ -12,10 +12,10 @@ public class Water {
 
     public void isWaterValid(String water){
 
-        if(water!=null){
+        if(water!=null || water.trim().isEmpty()){
             try{
 
-                this.water=Integer.parseInt(water);
+                this.water=Double.parseDouble(water);
                 checker=true;
                 isNull =false;
 
@@ -32,7 +32,7 @@ public class Water {
         }
     }
 
-    public int getWater(){
+    public double getWater(){
         return water;
     }
 

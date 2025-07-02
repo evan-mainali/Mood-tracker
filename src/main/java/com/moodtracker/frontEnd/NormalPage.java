@@ -35,6 +35,7 @@ public class NormalPage extends JFrame{
         OutdoorTime outDoortime = new OutdoorTime();
         ExerciseHours hoursExercised= new ExerciseHours();
         SleepHours sleptTime = new SleepHours();
+        Water waterDrank=new Water();
 
         labelDate = new JLabel(String.valueOf(calendar.getCurrentday()+"-"+ calendar.getMonthString()+ "-"+calendar.getCurrentYear())); // displays current
                                                                                                                                             // date on top right
@@ -94,6 +95,7 @@ public class NormalPage extends JFrame{
            outDoortime.validateHours(textOut.getText());
            hoursExercised.validateHours(textExer.getText());
            sleptTime.validateHours(textSleep.getText());
+           waterDrank.isWaterValid(waterText.getText());
 
             if((outDoortime.isCheckerNull() && hoursExercised.isCheckerNull()) && sleptTime.isCheckerNull()){
                 JOptionPane.showMessageDialog(this,"All fields Empty");
@@ -128,6 +130,9 @@ public class NormalPage extends JFrame{
             else if(!hoursExercised.getChecker()){
                 JOptionPane.showMessageDialog(this,"Invalid type for exercise hours");
                 return;
+            }
+            else if(!waterDrank.getChecker()){
+                JOptionPane.showMessageDialog(this, "Invalid water drank in litres");
             }
             else{
                 JOptionPane.showMessageDialog(this,"all valid inputs");

@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        NormalPage page = new NormalPage();
+        ColorSelect select = new ColorSelect();
 
 
 

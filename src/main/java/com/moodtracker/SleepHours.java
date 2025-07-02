@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SleepHours extends CurrentDate {
 
-    private int hours;
+    private double hours;
 
     private String name;
 
@@ -33,7 +33,7 @@ public class SleepHours extends CurrentDate {
     }
 
 
-    public int getHours(){
+    public double getHours(){
         return hours;
     }
 
@@ -44,7 +44,7 @@ public class SleepHours extends CurrentDate {
         }
 
         try {
-            int number = Integer.parseInt(data);
+            double number = Double.parseDouble(data);
             this.hours = number;
 
 
