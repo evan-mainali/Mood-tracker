@@ -38,8 +38,7 @@ public class ColorSelect extends JFrame {
         setSize(1000,1000);
         setLayout(null);
 
-        ReadMoodFile file = new ReadMoodFile();
-        UserInfo.calculateMoodPercentage(file.readMoodFile());
+
 
         panel = new JPanel();
         panel.setBounds(0, 0, 1000, 1000); // FULL SIZE PANEL

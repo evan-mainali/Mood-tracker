@@ -1,5 +1,6 @@
 package com.moodtracker.frontEnd;
 
+import com.moodtracker.ReadMoodFile;
 import com.moodtracker.UserInfo;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -17,10 +18,12 @@ public class PieChart extends JFrame {
 
     private Color[] colors;
 
+    private String[] moods;
+
 
     public PieChart(){
         super("Mood Pie Chart");
-        getPercentage();
+        setFunctions();
         // Create dataset
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
         for(int i =0;i<percentages.length;i++){
@@ -30,7 +33,7 @@ public class PieChart extends JFrame {
 
         // Create chart
         JFreeChart pieChart = ChartFactory.createPieChart(
-                "Mood Distribution",
+                "Mood Distribution for past 7 days",
                 dataset,
                 true,  // legend
                 true,  // tooltips
@@ -40,7 +43,7 @@ public class PieChart extends JFrame {
         PiePlot plot = (PiePlot) pieChart.getPlot();
         plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: ({2})"));
 
-        for(String i:UserInfo.getMoods()){
+        for(String i:moods){
             for(int j=0;j<MoodSelect.getNeutralMoods().length;j++){
                 if(i.equals(MoodSelect.getNeutralMoods()[j])){
                     plot.setSectionPaint(i,ColorSelect.getColourArray()[1]);
@@ -72,12 +75,20 @@ public class PieChart extends JFrame {
 
     }
 
-    private void getPercentage(){
-        int size = UserInfo.getPercentage().size();
+    private void setFunctions(){
+        FileMoodPointer file = new FileMoodPointer();
+        int size = file.getPercentage().size();
         percentages = new double[size];
-        for(int i =0;i<UserInfo.getPercentage().size();i++){
-            percentages[i]=UserInfo.getPercentage().get(i);
+        for(int i =0;i<file.getPercentage().size();i++){
+            percentages[i]=file.getPercentage().get(i);
         }
+
+        int size2=file.getMoods().size();
+        moods=new String[size2];
+        for(int i =0;i<file.getMoods().size();i++){
+            moods[i]=file.getMoods().get(i);
+        }
+
     }
 
     private void getColors(){
