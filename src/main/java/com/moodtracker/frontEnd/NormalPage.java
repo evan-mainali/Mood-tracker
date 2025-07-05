@@ -139,7 +139,8 @@ public class NormalPage extends JFrame{
                 sleptTime.fileSleepHours(); // files input
                 hoursExercised.fileExerciseHours(); // files input
                 outDoortime.fileOutdoorTime();
-                PieChart pieChart = new PieChart();
+
+                BarChart chart = new BarChart();
                 setVisible(false);
             }
 

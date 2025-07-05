@@ -25,7 +25,7 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
     public void fileExerciseHours(){ // writes the hours of exercise done to a file
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Exercise.txt", true)); // stores excercise hour in a file
-            writer.write(getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+hours);
+            writer.write(String.valueOf(hours));
             writer.newLine();
             writer.close();
         }

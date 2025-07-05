@@ -12,13 +12,17 @@ import org.jfree.data.general.DefaultPieDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.List;
 
 public class PieChart extends JFrame {
-    private double[] percentages;
+    private static double[] percentages;
 
     private Color[] colors;
 
-    private String[] moods;
+    private static String[] moods;
+
+    private static String[] fullMoods= new String[7];
+
 
 
     public PieChart(){
@@ -73,6 +77,9 @@ public class PieChart extends JFrame {
 
 
 
+
+
+
     }
 
     private void setFunctions(){
@@ -89,6 +96,10 @@ public class PieChart extends JFrame {
             moods[i]=file.getMoods().get(i);
         }
 
+        for(int i =0;i<file.getFullMoods().size();i++){
+            fullMoods[i]=file.getFullMoods().get(i);
+
+        }
     }
 
     private void getColors(){
@@ -100,5 +111,14 @@ public class PieChart extends JFrame {
         }
 
     }
+
+    public static String[] getMoods(){
+        return moods;
+    }
+    public static String[] getFullMoods(){
+        return fullMoods;
+    }
+
+
 
 }

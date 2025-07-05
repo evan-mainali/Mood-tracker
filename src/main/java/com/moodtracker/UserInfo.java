@@ -11,7 +11,8 @@ public class UserInfo {
     private String mood;
 
     private static List<Double> percentage = new ArrayList<>();
-    private static List<String> moods = new ArrayList<>();
+    private static List<String> moods = new ArrayList<>(7);
+    private static List<String> fullMoods=new ArrayList<>();
 
     public UserInfo(String date, String mood){ // this class will print out the user info links related to their mood.
         this.date=date;
@@ -69,6 +70,14 @@ public class UserInfo {
             double rounded = Math.round(percentages*100.0)/100.0;
             percentage.add(rounded);
 
+
+
+        }
+        int i =0;
+
+        for(UserInfo userInfo:userInfos){
+            String mood = userInfo.getMood();
+            fullMoods.add(mood);
         }
 
     }
@@ -81,6 +90,9 @@ public class UserInfo {
     public static List<Double> getPercentage(){
         return percentage;
 
+    }
+    public static List<String> getFullMoods(){
+        return fullMoods;
     }
 
 

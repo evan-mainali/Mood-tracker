@@ -23,7 +23,7 @@ public class SleepHours extends CurrentDate {
     public void fileSleepHours(){
         try { // this part of the program stores the sleep hours into a file
             BufferedWriter writer = new BufferedWriter(new FileWriter("SleepHours.txt",true));
-            writer.write(getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear()+" "+String.valueOf(hours));
+            writer.write(String.valueOf(hours));
             writer.newLine();
             writer.close();
         }

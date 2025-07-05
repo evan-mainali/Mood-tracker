@@ -57,7 +57,8 @@ public class FileMoodPointer {
             BufferedWriter writer = new BufferedWriter(new FileWriter("FilePointer.txt"));
             writer.write(String.valueOf(position));
             writer.close();
-            userInfos.clear();
+
+
 
 
         } catch (IOException e) {
@@ -69,12 +70,17 @@ public class FileMoodPointer {
     }
 
     public List<Double> getPercentage(){
-
+        userInfos.clear();
         return UserInfo.getPercentage();
+
     }
     public List<String> getMoods(){
         return UserInfo.getMoods();
 
+    }
+
+    public List<String> getFullMoods(){
+        return UserInfo.getFullMoods();
     }
 
 
