@@ -1,6 +1,4 @@
-package com.moodtracker.frontEnd;
-
-import com.moodtracker.UserInfo;
+package com.moodtracker;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ public class FileMoodPointer {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("FilePointer.txt"));
                 position = Long.parseLong(reader.readLine());
+                reader.close();
 
             } catch (IOException e) {
                 System.out.println("Error");
@@ -57,6 +56,7 @@ public class FileMoodPointer {
             BufferedWriter writer = new BufferedWriter(new FileWriter("FilePointer.txt"));
             writer.write(String.valueOf(position));
             writer.close();
+            raf.close();
 
 
 
@@ -70,7 +70,6 @@ public class FileMoodPointer {
     }
 
     public List<Double> getPercentage(){
-        userInfos.clear();
         return UserInfo.getPercentage();
 
     }

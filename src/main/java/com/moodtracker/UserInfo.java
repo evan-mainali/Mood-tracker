@@ -11,8 +11,8 @@ public class UserInfo {
     private String mood;
 
     private static List<Double> percentage = new ArrayList<>();
-    private static List<String> moods = new ArrayList<>(7);
-    private static List<String> fullMoods=new ArrayList<>();
+    private static List<String> moods = new ArrayList<>();
+    private static List<String> fullMoods=new ArrayList<>(7);
 
     public UserInfo(String date, String mood){ // this class will print out the user info links related to their mood.
         this.date=date;

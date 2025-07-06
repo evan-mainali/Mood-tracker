@@ -1,6 +1,6 @@
 package com.moodtracker.frontEnd;
 
-import com.moodtracker.ReadMoodFile;
+import com.moodtracker.FileMoodPointer;
 import com.moodtracker.UserInfo;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -11,8 +11,6 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class PieChart extends JFrame {
     private static double[] percentages;
