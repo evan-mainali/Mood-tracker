@@ -7,7 +7,7 @@ import java.util.List;
 public class FileDataPointer {
 
     private long position=0;
-    private final String datapointer = "DataPointer.txt";
+    private final String datapointer = "FileDataPointer.txt";
     private List<String> exerciseHours = new ArrayList<>();
     private List<String> sleepHours = new ArrayList<>();
 

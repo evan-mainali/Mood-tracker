@@ -8,7 +8,7 @@ public class FileMoodPointer {
 
     private long position=0;
     private String line="";
-    private final String filePointer="FilePointer.txt";
+    private final String filePointer="FileMoodPointer.txt";
     private List<UserInfo> userInfos = new ArrayList<>();
 
 
@@ -17,7 +17,7 @@ public class FileMoodPointer {
 
         if (pf.exists()) {
             try {
-                BufferedReader reader = new BufferedReader(new FileReader("FilePointer.txt"));
+                BufferedReader reader = new BufferedReader(new FileReader("FileMoodPointer.txt"));
                 position = Long.parseLong(reader.readLine());
                 reader.close();
 
@@ -53,7 +53,7 @@ public class FileMoodPointer {
 
             // Save current file pointer for next run
             position = raf.getFilePointer();
-            BufferedWriter writer = new BufferedWriter(new FileWriter("FilePointer.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("FileMoodPointer.txt"));
             writer.write(String.valueOf(position));
             writer.close();
             raf.close();

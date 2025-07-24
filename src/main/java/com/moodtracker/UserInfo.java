@@ -38,7 +38,9 @@ public class UserInfo {
     public static void calculateMoodPercentage(List<UserInfo>userInfos) { // method to calculate mood as percentages from Mood.txt file
         // Step 1: Count the total number of users
         int totalUsers = userInfos.size();
-
+        moods.clear();
+        percentage.clear();
+        fullMoods.clear();
 
         // Step 2: Manually count the number of each mood
 

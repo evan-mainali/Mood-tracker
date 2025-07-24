@@ -43,14 +43,6 @@ public class BarChart extends JFrame {
         BarRenderer barRenderer = (BarRenderer) plot.getRenderer();
         barRenderer.setSeriesPaint(0, new Color(0,0,255)); // blue bars
 
-        // Add a line renderer to the same dataset
-        LineAndShapeRenderer lineRenderer = new LineAndShapeRenderer();
-        lineRenderer.setSeriesPaint(0, Color.BLACK); // red line
-        lineRenderer.setSeriesShapesVisible(0, true);
-
-        // Add the line renderer as an additional renderer
-        plot.setRenderer(1, lineRenderer);
-
         // Map dataset to both renderers
         plot.setDataset(1, dataset);
 
@@ -78,9 +70,8 @@ public class BarChart extends JFrame {
     private CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         FileDataPointer pointer = new FileDataPointer();
-        FileMoodPointer moodPointer = new FileMoodPointer();
         for(int i=0;i< pointer.getExerciseHours().size();i++){
-            String mood = moodPointer.getFullMoods().get(i);
+            String mood = PieChart.getFullMoods()[i];
             String uniqueCategory = mood + " #" + (i+1);  // e.g., "Calm #1", "Calm #2"
             dataset.addValue(Double.parseDouble(pointer.getExerciseHours().get(i)), "Frequency", uniqueCategory);
         }

@@ -21,6 +21,8 @@ public class PieChart extends JFrame {
 
     private static String[] fullMoods= new String[7];
 
+    JButton button;
+
 
 
     public PieChart(){
@@ -64,14 +66,31 @@ public class PieChart extends JFrame {
 
         // Set chart panel
         ChartPanel chartPanel = new ChartPanel(pieChart);
-        setContentPane(chartPanel);
-        chartPanel.setSize(1000,500);
+        chartPanel.setPreferredSize(new Dimension(500,500));
 
-        // Configure frame
-        setSize(1000, 1000);
+        button = new JButton("Submit");
+        button.setBounds(600,600,500,500);
+
+
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(button);
+
+        setLayout(new BorderLayout());
+        add(chartPanel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
+
+        setSize(1000,1000);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
+        button.addActionListener(e->{
+            setVisible(false);
+            new BarChart();
+
+        });
+
 
 
 
@@ -96,7 +115,6 @@ public class PieChart extends JFrame {
 
         for(int i =0;i<file.getFullMoods().size();i++){
             fullMoods[i]=file.getFullMoods().get(i);
-
         }
     }
 
