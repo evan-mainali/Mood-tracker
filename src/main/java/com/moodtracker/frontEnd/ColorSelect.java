@@ -5,6 +5,7 @@ import com.moodtracker.UserInfo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class ColorSelect extends JFrame {
 
@@ -30,6 +31,16 @@ public class ColorSelect extends JFrame {
 
     private JButton buttonSubmit;
 
+    private JButton resetButton;
+
+    private JButton randomButton;
+
+    private JComboBox<String> box = new JComboBox<>(colors);
+
+    private JComboBox<String> box2 = new JComboBox<>(colors);
+
+    private JComboBox<String> box3 = new JComboBox<String>(colors);
+
 
 
     public ColorSelect(){
@@ -49,8 +60,12 @@ public class ColorSelect extends JFrame {
         labelHappy.setBounds(20, 20, 300, 30);
         panel.add(labelHappy);
 
-        JComboBox<String> box = new JComboBox<>(colors);
+
         box.setBounds(20, 50, 300, 25);
+        box.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        box.setBackground(Color.WHITE);
+        box.setForeground(Color.BLACK);
+
         panel.add(box);
 
         // Sad mood label and combo box
@@ -58,16 +73,22 @@ public class ColorSelect extends JFrame {
         labelSad.setBounds(20, 90, 300, 30);
         panel.add(labelSad);
 
-        JComboBox<String> box2 = new JComboBox<>(colors);
+
         box2.setBounds(20, 120, 300, 25);
+        box2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        box2.setBackground(Color.WHITE);
+        box2.setForeground(Color.BLACK);
         panel.add(box2);
 
         labelRegular = new JLabel("Select colour for neutral moods");
         labelRegular.setBounds(20,160,300,25);
         panel.add(labelRegular);
 
-        JComboBox<String> box3 = new JComboBox<String>(colors);
+
         box3.setBounds(20,190,300,25);
+        box3.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        box3.setBackground(Color.WHITE);
+        box3.setForeground(Color.BLACK);
         panel.add(box3);
 
 
@@ -92,12 +113,53 @@ public class ColorSelect extends JFrame {
 
         });
 
+        panel.setBackground(new Color(173, 216, 230));
+
 
 
 
         buttonSubmit = new JButton("Submit");
-        buttonSubmit.setBounds(20,300,100,30);
+        buttonSubmit.setBackground(new Color(66, 135, 245));
+        buttonSubmit.setForeground(Color.WHITE);
+        buttonSubmit.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        buttonSubmit.setFocusPainted(false);
+        buttonSubmit.setBorderPainted(false);
+        buttonSubmit.setOpaque(true);
+        buttonSubmit.setBounds(50, 250, 200, 40);
+
+        resetButton = new JButton("Reset");
+        resetButton.setBackground(new Color(66, 135, 245));
+        resetButton.setForeground(Color.WHITE);
+        resetButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        resetButton.setFocusPainted(false);
+        resetButton.setBorderPainted(false);
+        resetButton.setOpaque(true);
+        resetButton.setBounds(50,300,200,40);
+
+        randomButton = new JButton("Random");
+        randomButton.setBackground(new Color(66, 135, 245));
+        randomButton.setForeground(Color.WHITE);
+        randomButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        randomButton.setFocusPainted(false);
+        randomButton.setBorderPainted(false);
+        randomButton.setOpaque(true);
+        randomButton.setBounds(50,350,200,40);
+
+
         panel.add(buttonSubmit);
+        panel.add(resetButton);
+        panel.add(randomButton);
+
+        resetButton.addActionListener(e->{
+            panel.setBackground(new Color(173, 216, 230));
+        });
+
+        randomButton.addActionListener(e->{
+
+
+            setRandomButton();
+        });
+
 
         buttonSubmit.addActionListener(e -> {
 
@@ -161,6 +223,28 @@ public class ColorSelect extends JFrame {
         }
         return Color.BLACK;
     }
+
+    public void setRandomButton() {
+        Random random = new Random();
+        int num1;
+        int num2;
+        int num3;
+
+        do {
+            num1 = random.nextInt(8);
+            num2 = random.nextInt(8);
+            num3 = random.nextInt(8);
+        } while (num1 == num2 || num1 == num3 || num2 == num3);
+
+
+         box.setSelectedItem(colors[num1]);
+         box2.setSelectedItem(colors[num2]);
+         box3.setSelectedItem(colors[num3]);
+
+
+    }
+
+
 
 
 }

@@ -140,9 +140,8 @@ public class NormalPage extends JFrame{
                 hoursExercised.fileExerciseHours(); // files input
                 outDoortime.fileOutdoorTime();
 
-
+                PieChart chart = new PieChart();
                 setVisible(false);
-                new PieChart();
             }
 
         });

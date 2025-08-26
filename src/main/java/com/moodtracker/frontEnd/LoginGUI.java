@@ -1,6 +1,7 @@
 package com.moodtracker.frontEnd;
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ public class LoginGUI extends JFrame {
 
     private String name;
     private int age;
+    ;
 
     public LoginGUI(){
             setTitle("Login Page");
@@ -31,21 +33,33 @@ public class LoginGUI extends JFrame {
             nameLabel.setForeground(Color.BLACK);
             nameLabel.setFont(new Font("arial",Font.BOLD,18)); // creates font size and type
 
-            textUsername = new JTextField(); //creates text field for name
+            textUsername = new JTextField();
             textUsername.setBounds(50, 90, 200, 30);
             textUsername.setForeground(Color.BLACK);
+            textUsername.setBackground(new Color(245, 245, 245)); // background
+            textUsername.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            textUsername.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 
             ageLabel = new JLabel("Enter age"); //creates label for age
             ageLabel.setBounds(50,120,200,30);
             ageLabel.setForeground(Color.BLACK);
             ageLabel.setFont(new Font("arial",Font.BOLD,18)); // creates font size and type
 
-            textAge = new JTextField(); // creates text field for age
-            textAge.setBounds(50,150,200,30);
+            textAge = new JTextField();
+            textAge.setBounds(50, 150, 200, 30);
             textAge.setForeground(Color.BLACK);
+            textAge.setBackground(new Color(245, 245, 245));
+            textAge.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            textAge.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
 
-            submitButton = new JButton("Submit"); // creates a button
-            submitButton.setBounds(50,200,200,30);
+            submitButton = new JButton("Login");
+            submitButton.setBackground(new Color(66, 135, 245));
+            submitButton.setForeground(Color.WHITE);
+            submitButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            submitButton.setFocusPainted(false);
+            submitButton.setBorderPainted(false);
+            submitButton.setOpaque(true);
+            submitButton.setBounds(50, 200, 200, 40);
 
             submitButton.addActionListener(new ActionListener() {
                 @Override
@@ -55,7 +69,7 @@ public class LoginGUI extends JFrame {
                 }
             });
 
-            System.out.println(name+" "+age);
+
 
 
             add(textUsername);
@@ -63,9 +77,10 @@ public class LoginGUI extends JFrame {
             add(submitButton);
             add(nameLabel);
             add(ageLabel);
-
-
+            add(submitButton);
             setVisible(true);
+
+
 
     }
 
@@ -114,6 +129,9 @@ public class LoginGUI extends JFrame {
     public int getAge(){
         return age;
     }
+
+
+
 
 
 
