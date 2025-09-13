@@ -19,20 +19,20 @@ public class MoodSelect extends JFrame {
     private int numberMood;
 
     private String[] mood = {
-            "Joyful",      // Positive
-            "Motivated",   // Positive
-            "Calm",        // Neutral
-            "Bored",       // Neutral
-            "Tired",       // Neutral
-            "Frustrated",  // Negative
-            "Anxious",     // Negative
-            "Sad" ,         // Negative
-            "Happy"         // positive
+            "joyful",      // Positive
+            "motivated",   // Positive
+            "calm",        // Neutral
+            "bored",       // Neutral
+            "tired",       // Neutral
+            "frustrated",  // Negative
+            "anxious",     // Negative
+            "sad" ,         // Negative
+            "happy"         // positive
     };
 
-    private static String[] neutralMoods = {"Calm","Bored","Tired"};
-    private static String[] positiveMoods = {"Happy","Joyful","Motivated"};
-    private static String[] negativeMoods = {"Sad","Anxious","Frustrated"};
+    private static String[] neutralMoods = {"calm","bored","tired"};
+    private static String[] positiveMoods = {"happy","joyful","motivated"};
+    private static String[] negativeMoods = {"sad","anxious","frustrated"};
     private static String moodPicked="";
 
     private Integer[] numbers = {1,2,3,4,5,6,7,8,9};

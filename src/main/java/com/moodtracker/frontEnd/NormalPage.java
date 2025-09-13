@@ -35,7 +35,7 @@ public class NormalPage extends JFrame{
         OutdoorTime outDoortime = new OutdoorTime();
         ExerciseHours hoursExercised= new ExerciseHours();
         SleepHours sleptTime = new SleepHours();
-        Water waterDrank=new Water();
+
 
         labelDate = new JLabel(String.valueOf(calendar.getCurrentday()+"-"+ calendar.getMonthString()+ "-"+calendar.getCurrentYear())); // displays current
                                                                                                                                             // date on top right
@@ -66,13 +66,6 @@ public class NormalPage extends JFrame{
         textOut = new JTextField();
         textOut.setBounds(30,160,250,20);
 
-        water = new JLabel("Enter water drunk in litres");
-        water.setBounds(30,190,250,20);
-
-        waterText = new JTextField();
-        waterText.setBounds(30,210,250,20);
-
-
         String[][] calendarData = calendar.getMonthCalendar();
         String[] columnNames = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
@@ -88,14 +81,14 @@ public class NormalPage extends JFrame{
         labelCalendar.setFont(new Font("arial",Font.BOLD,15));
 
         submitButton = new JButton("Submit");
-        submitButton.setBounds(30,250,150,30);
+        submitButton.setBounds(30,200,150,30);
 
         submitButton.addActionListener(e-> {
 
            outDoortime.validateHours(textOut.getText());
            hoursExercised.validateHours(textExer.getText());
            sleptTime.validateHours(textSleep.getText());
-           waterDrank.isWaterValid(waterText.getText());
+
 
             if((outDoortime.isCheckerNull() && hoursExercised.isCheckerNull()) && sleptTime.isCheckerNull()){
                 JOptionPane.showMessageDialog(this,"All fields Empty");
@@ -131,9 +124,7 @@ public class NormalPage extends JFrame{
                 JOptionPane.showMessageDialog(this,"Invalid type for exercise hours");
                 return;
             }
-            else if(!waterDrank.getChecker()){
-                JOptionPane.showMessageDialog(this, "Invalid water drank in litres");
-            }
+
             else{
                 JOptionPane.showMessageDialog(this,"all valid inputs");
                 sleptTime.fileSleepHours(); // files input
@@ -155,8 +146,6 @@ public class NormalPage extends JFrame{
         add(labelDate);
         add(panel);
         panel.add(submitButton);
-        panel.add(water);
-        panel.add(waterText);
 
        add(calendarScroll);
 

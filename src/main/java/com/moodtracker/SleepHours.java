@@ -1,36 +1,65 @@
 package com.moodtracker;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SleepHours extends CurrentDate {
 
     private double hours;
-
     private String name;
-
     private int age;
     private boolean checker;
     private boolean checkerNull=false;
+    private String filename = "SleepHours.txt";
 
     public SleepHours(){
 
     }
 
+    public void fileSleepHours() {
+        List<String> lines = readAllLines(filename);
+        String currentDate = new CurrentDate().getDate();
+        boolean dateFound = false;
 
-    public void fileSleepHours(){
-        try { // this part of the program stores the sleep hours into a file
-            BufferedWriter writer = new BufferedWriter(new FileWriter("SleepHours.txt",true));
-            writer.write(String.valueOf(hours));
-            writer.newLine();
-            writer.close();
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.startsWith(currentDate)) {
+                lines.set(i, line + " " + hours);
+                dateFound = true;
+                break;
+            }
         }
-        catch (IOException e){
-            e.printStackTrace();
+
+        if (!dateFound) {
+            lines.add(currentDate + " " + hours);
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
         }
     }
+
+    private List<String> readAllLines(String filePath) {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            // File might not exist yet, which is fine
+        }
+        return lines;
+    }
+
 
 
     public double getHours(){

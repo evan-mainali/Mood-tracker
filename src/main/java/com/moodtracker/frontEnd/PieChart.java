@@ -9,69 +9,65 @@ import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class PieChart extends JFrame {
-    private static double[] percentages;
 
-    private Color[] colors;
+    public static List<String> moods = new ArrayList<String>();
 
-    private static String[] moods;
+    private JButton button;
 
-    private static String[] fullMoods= new String[7];
-
-    JButton button;
-
-
-
-    public PieChart(){
+    public PieChart() {
         super("Mood Pie Chart");
-        setFunctions();
-        // Create dataset
-        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
-        for(int i =0;i<percentages.length;i++){
-            dataset.setValue(UserInfo.getMoods().get(i),percentages[i]);
 
+        // Ensure FileMoodPointer loads the slice and calculates percentages
+        FileMoodPointer file = new FileMoodPointer();
+        moods = UserInfo.getFullMoods();
+
+        // Build dataset with unique moods + percentages
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        for (int i = 0; i < UserInfo.getMoods().size(); i++) {
+            dataset.setValue(UserInfo.getMoods().get(i), UserInfo.getPercentage().get(i));
         }
 
         // Create chart
         JFreeChart pieChart = ChartFactory.createPieChart(
-                "Mood Distribution for past 7 days",
+                "Mood Distribution for Recent Slice",
                 dataset,
-                true,  // legend
-                true,  // tooltips
-                false  // URLs
+                true,   // legend
+                true,   // tooltips
+                false   // URLs
         );
 
         PiePlot plot = (PiePlot) pieChart.getPlot();
-        plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: ({2})"));
+        plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} ({2})"));
 
-        for(String i:moods){
-            for(int j=0;j<MoodSelect.getNeutralMoods().length;j++){
-                if(i.equals(MoodSelect.getNeutralMoods()[j])){
-                    plot.setSectionPaint(i,ColorSelect.getColourArray()[1]);
-                }
-                else if(i.equals(MoodSelect.getPositiveMoods()[j])){
-                    plot.setSectionPaint(i,ColorSelect.getColourArray()[0]);
-                }
-                else if(i.equals(MoodSelect.getNegativeMoods()[j])){
-                    plot.setSectionPaint(i,ColorSelect.getColourArray()[2]);
-                }
+        // Assign colors based on mood type
+        for (String mood : UserInfo.getMoods()) {
+            if (Arrays.asList(MoodSelect.getNeutralMoods()).contains(mood)) {
+                plot.setSectionPaint(mood, ColorSelect.getColourArray()[1]);
+            } else if (Arrays.asList(MoodSelect.getPositiveMoods()).contains(mood)) {
+                plot.setSectionPaint(mood, ColorSelect.getColourArray()[0]);
+            } else if (Arrays.asList(MoodSelect.getNegativeMoods()).contains(mood)) {
+                plot.setSectionPaint(mood, ColorSelect.getColourArray()[2]);
+            } else {
+                plot.setSectionPaint(mood, Color.GRAY); // fallback
             }
-            Color babyBlue = new Color(137, 207, 240);
-            plot.setBackgroundPaint(babyBlue);
-
         }
+
+        plot.setBackgroundPaint(new Color(137, 207, 240));
 
         // Set chart panel
         ChartPanel chartPanel = new ChartPanel(pieChart);
-        chartPanel.setPreferredSize(new Dimension(500,500));
+        chartPanel.setPreferredSize(new Dimension(600, 600));
 
-        button = new JButton("Submit");
-        button.setBounds(600,600,500,500);
-
-
+        button = new JButton("Switch to Bar Chart");
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(button);
@@ -80,61 +76,17 @@ public class PieChart extends JFrame {
         add(chartPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
 
-        setSize(1000,1000);
+        setSize(800, 800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-        button.addActionListener(e->{
+        // Switch to bar chart
+        button.addActionListener(e -> {
             setVisible(false);
             new BarChart();
-
         });
-
-
-
-
-
-
-
     }
-
-    private void setFunctions(){
-        FileMoodPointer file = new FileMoodPointer();
-        int size = file.getPercentage().size();
-        percentages = new double[size];
-        for(int i =0;i<file.getPercentage().size();i++){
-            percentages[i]=file.getPercentage().get(i);
-        }
-
-        int size2=file.getMoods().size();
-        moods=new String[size2];
-        for(int i =0;i<file.getMoods().size();i++){
-            moods[i]=file.getMoods().get(i);
-        }
-
-        for(int i =0;i<file.getFullMoods().size();i++){
-            fullMoods[i]=file.getFullMoods().get(i);
-        }
-    }
-
-    private void getColors(){
-        int size =ColorSelect.getColourArray().length;
-        colors = new Color[size];
-
-        for(int i=0;i< ColorSelect.getColourArray().length;i++){
-            colors[i]=ColorSelect.getColourArray()[i];
-        }
-
-    }
-
-    public static String[] getMoods(){
-        return moods;
-    }
-    public static String[] getFullMoods(){
-        return fullMoods;
-    }
-
 
 
 }

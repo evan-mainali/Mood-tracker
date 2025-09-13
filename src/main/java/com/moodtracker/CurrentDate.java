@@ -76,4 +76,8 @@ public class CurrentDate {
 
 
         }
+
+        public String getDate(){
+            return getCurrentday()+"-"+getCurrentMonth()+"-"+getCurrentYear();
+        }
 }

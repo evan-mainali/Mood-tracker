@@ -1,101 +1,70 @@
 package com.moodtracker;
 
-import java.text.DecimalFormat;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserInfo {
     private String date;
-    private String name;
-    private int age;
     private String mood;
 
-    private static List<Double> percentage = new ArrayList<>();
-    private static List<String> moods = new ArrayList<>();
-    private static List<String> fullMoods=new ArrayList<>(7);
+    // Static fields to store results
+    private static final List<Double> percentage = new ArrayList<>();
+    private static final List<String> moods = new ArrayList<>();
+    private static final List<String> fullMoods = new ArrayList<>();
 
-    public UserInfo(String date, String mood){ // this class will print out the user info links related to their mood.
-        this.date=date;
-        this.mood=mood;
-    }
-    public UserInfo(String name,int age){ // different constructor fot UserInfo to store name and age
-        this.name=name;
-        this.age=age;
+    public UserInfo(String date, String mood) {
+        this.date = date;
+        this.mood = mood;
     }
 
-
-    public String getName(){ // these are getters
-        return name;
-    } // getter for name
-    public int getAge(){
-        return age;
-    } // getter for age
-    public String getMood(){
+    public String getMood() {
         return mood;
-    } // getter for mood
+    }
 
-    // Manual Mood Percentage Calculation (No Shortcuts)
-    public static void calculateMoodPercentage(List<UserInfo>userInfos) { // method to calculate mood as percentages from Mood.txt file
-        // Step 1: Count the total number of users
-        int totalUsers = userInfos.size();
+    public static void calculateMoodPercentage(List<UserInfo> userInfos) {
         moods.clear();
         percentage.clear();
         fullMoods.clear();
 
-        // Step 2: Manually count the number of each mood
-
-        List<Integer> moodCounts = new ArrayList<>();
+        Map<String, Integer> moodCounts = new HashMap<>();
+        int totalMoods = 0;
 
         for (UserInfo userInfo : userInfos) {
-            String userMood = userInfo.getMood();
-            boolean found = false;
-
-            // Check if the mood is already in our list
-            for (int i = 0; i < moods.size(); i++) {
-                if (moods.get(i).equals(userMood)) {
-                    moodCounts.set(i, moodCounts.get(i) + 1); // Increase the count manually
-                    found = true;
-                    break;
-                }
-            }
-
-            // If it's a new mood, add it to the list
-            if (!found) {
-                moods.add(userMood);
-                moodCounts.add(1);
-            }
-        }
-
-        // Step 3: Calculate and print percentages manually
-        for (int i = 0; i < moods.size(); i++) {
-            double percentages = (moodCounts.get(i) * 100.0) / totalUsers;
-            double rounded = Math.round(percentages*100.0)/100.0;
-            percentage.add(rounded);
-
-
-
-        }
-        int i =0;
-
-        for(UserInfo userInfo:userInfos){
             String mood = userInfo.getMood();
-            fullMoods.add(mood);
+            if (mood != null && !mood.isEmpty()) {
+                fullMoods.add(mood);
+                totalMoods++;
+                moodCounts.put(mood, moodCounts.getOrDefault(mood, 0) + 1);
+            }
         }
 
+        // Calculate and store percentages
+        for (Map.Entry<String, Integer> entry : moodCounts.entrySet()) {
+            String moodKey = entry.getKey();
+            int count = entry.getValue();
+
+            moods.add(moodKey);
+            double rawPercentage = (double) count * 100.0 / totalMoods;
+
+            // Round to 2 decimal places
+            double rounded = Math.round(rawPercentage * 100.0) / 100.0;
+            percentage.add(rounded);
+        }
     }
 
-    public static List<String> getMoods(){
-
-        return moods;
-    }
-
-    public static List<Double> getPercentage(){
-        return percentage;
-
-    }
-    public static List<String> getFullMoods(){
+    // Getters for the static results
+    public static List<String> getFullMoods() {
         return fullMoods;
     }
 
+    public static List<Double> getPercentage() {
+        return percentage;
+    }
 
+    public static List<String> getMoods() {
+        return moods;
+    }
 }

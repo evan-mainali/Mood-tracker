@@ -1,8 +1,5 @@
 package com.moodtracker.frontEnd;
 
-import com.moodtracker.ReadMoodFile;
-import com.moodtracker.UserInfo;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
