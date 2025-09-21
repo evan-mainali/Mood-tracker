@@ -2,6 +2,7 @@ package com.moodtracker.frontEnd;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.util.Random;
 
 public class ColorSelect extends JFrame {
@@ -183,27 +184,88 @@ public class ColorSelect extends JFrame {
     }
 
 
-    private void validateColors(){ // validates colours, will not work if two colours are the same for each mood select.
-
+    private void validateColors() {
         if (colorHappy == null || colorSad == null || colorRegular == null) {
             JOptionPane.showMessageDialog(this, "Please select a color for all moods.", "Missing Selection", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        while (colorHappy.equals(colorSad) || colorHappy.equals(colorRegular) || colorSad.equals(colorRegular)) {
+        if (colorHappy.equals(colorSad) || colorHappy.equals(colorRegular) || colorSad.equals(colorRegular)) {
             JOptionPane.showMessageDialog(this, "Each mood must have a different color. Please adjust your selections.", "Duplicate Colors", JOptionPane.ERROR_MESSAGE);
-            return; // exits here and waits for user to change selection and re-click Submit
+            return;
         }
+
+        // ✅ Save colors to file
+        saveColorsToFile();
 
         JOptionPane.showMessageDialog(this, "OK", "Success", JOptionPane.INFORMATION_MESSAGE);
         setVisible(false);
-        MoodSelect moodSelect = new MoodSelect();
-        // Proceed to next page
-
-
-
-
+        new MoodSelect(); // Go to next screen
     }
+
+    private void saveColorsToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("colors.txt"))) {
+            writer.write(ColorToString(colorHappy));
+            writer.newLine();
+            writer.write(ColorToString(colorSad));
+            writer.newLine();
+            writer.write(ColorToString(colorRegular));
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String ColorToString(Color c) {
+        if (c.equals(Color.RED)) return "RED";
+        if (c.equals(Color.GREEN)) return "GREEN";
+        if (c.equals(Color.YELLOW)) return "YELLOW";
+        if (c.equals(Color.BLACK)) return "BLACK";
+        if (c.equals(Color.WHITE)) return "WHITE";
+        if (c.equals(Color.ORANGE)) return "ORANGE";
+        if (c.equals(Color.MAGENTA)) return "MAGENTA";
+        if (c.equals(Color.CYAN)) return "CYAN";
+        return "BLACK"; // Default if unknown
+    }
+
+
+    public static boolean loadColorsFromFile() {
+        File file = new File("colors.txt");
+        if (!file.exists()) {
+            return false; // No file yet -> no colors saved
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String happy = reader.readLine();
+            String sad = reader.readLine();
+            String regular = reader.readLine();
+
+            colorHappy = StringToColorStatic(happy);
+            colorSad = StringToColorStatic(sad);
+            colorRegular = StringToColorStatic(regular);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Because we need this without an object
+    private static Color StringToColorStatic(String color) {
+        switch (color) {
+            case "RED": return Color.RED;
+            case "GREEN": return Color.GREEN;
+            case "YELLOW": return Color.YELLOW;
+            case "BLACK": return Color.BLACK;
+            case "WHITE": return Color.WHITE;
+            case "ORANGE": return Color.ORANGE;
+            case "MAGENTA": return Color.MAGENTA;
+            case "CYAN": return Color.CYAN;
+            default: return Color.BLACK;
+        }
+    }
+
+
 
     public static Color[] getColourArray(){
         Color[] array = {colorHappy,colorRegular,colorSad};

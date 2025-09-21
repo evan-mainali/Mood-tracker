@@ -1,6 +1,5 @@
 package com.moodtracker;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,10 @@ public class FileMoodPointer {
     private List<UserInfo> userInfos = new ArrayList<>();
 
     public FileMoodPointer() {
-        // --- LOAD PREVIOUS POINTER ---
+
+    }
+
+    public void loadFilePointer() {
         File pf = new File(filePointer);
         if (pf.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filePointer))) {
@@ -24,6 +26,8 @@ public class FileMoodPointer {
                 }
             } catch (IOException | NumberFormatException e) {
                 System.out.println("Error reading pointer file or parsing position: " + e.getMessage());
+                // Reset position to 0 to start from the beginning in case of an error
+                position = 0;
             }
         }
 
@@ -31,19 +35,24 @@ public class FileMoodPointer {
         RandomAccessFile raf = null;
         try {
             raf = new RandomAccessFile("Mood.txt", "r");
+
+            // Check if the saved position is valid and within the file size
+            if (position > raf.length()) {
+                position = 0; // Reset if the pointer is beyond the file's current size
+            }
             raf.seek(position);
 
-            int lineCount = 0;
+            int validLinesRead = 0;
             String line;
-            while ((line = raf.readLine()) != null && lineCount < 7) {
+            while ((line = raf.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) {
-                    continue; // skip empty lines
+                    continue; // Skip empty lines
                 }
 
                 String[] parts = line.split("\\s+", 2);
                 if (parts.length < 2) {
-                    continue;
+                    continue; // Skip invalid lines
                 }
 
                 String date = parts[0];
@@ -51,10 +60,12 @@ public class FileMoodPointer {
 
                 String chosenMood = determineMoodForDay(moodsForDayString);
 
-                // Only add a UserInfo object if a mood was determined
                 if (!chosenMood.isEmpty()) {
                     userInfos.add(new UserInfo(date, chosenMood));
-                    lineCount++;
+                    validLinesRead++; // Increment counter only for valid, processed lines
+                    if (validLinesRead >= 7) {
+                        break; // Exit the loop after processing 7 valid lines
+                    }
                 }
             }
 
@@ -63,18 +74,26 @@ public class FileMoodPointer {
                 UserInfo.calculateMoodPercentage(userInfos);
             }
 
-            // Saves pointer
+            // The position is updated here for the new method to save it.
             position = raf.getFilePointer();
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePointer))) {
-                writer.write(String.valueOf(position));
-            }
 
         } catch (IOException e) {
-            System.out.println("Error reading file: ");
+            System.out.println("Error reading file: " + e.getMessage());
         } finally {
             try {
                 if (raf != null) raf.close();
-            } catch (IOException ignored) {}
+            }
+            catch (IOException ignored) {
+
+            }
+        }
+    }
+
+    public void updateFilePointer() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePointer))) {
+            writer.write(String.valueOf(position));
+        } catch (IOException e) {
+            System.out.println("Error writing pointer file: " + e.getMessage());
         }
     }
 
@@ -124,21 +143,18 @@ public class FileMoodPointer {
             return chosenMood;
         }
     }
-    /* public List<UserInfo> getUserInfos() {
-        return userInfos;
-    }
 
-    public List<Double> getPercentage() {
-        return UserInfo.getPercentage();
-    }
+    public int getFileLength(){
 
-    public List<String> getMoods() {
-        return UserInfo.getMoods();
-    }
+        int lines = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader("Mood.txt"))) {
+            while (reader.readLine() != null) {
+                lines++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
 
-    public List<String> getFullMoods() {
-        return UserInfo.getFullMoods();
     }
-
-     */
 }

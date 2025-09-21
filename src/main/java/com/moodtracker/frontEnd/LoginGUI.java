@@ -5,6 +5,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 
 public class LoginGUI extends JFrame {
@@ -113,28 +114,43 @@ public class LoginGUI extends JFrame {
         // If both valid
         JOptionPane.showMessageDialog(this, "Welcome, " + name + "! Your age: " + age);
 
+        saveUserToFile();
 
         setVisible(false);
-
-        ColorSelect display = new ColorSelect(); //next page will become true
-
+        ColorSelect display = new ColorSelect();
 
 
     }
 
-    public String getName(){
-        return name;
+    private void saveUserToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("user.txt"))) {
+            writer.write(name);
+            writer.newLine();
+            writer.write(String.valueOf(age));
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int getAge(){
-        return age;
+    public static String[] loadUserFromFile() {
+        File file = new File("user.txt");
+        if (!file.exists()) {
+            return null; // no saved user
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String savedName = reader.readLine();
+            String savedAge = reader.readLine();
+
+            if (savedName == null || savedAge == null) return null;
+
+            return new String[] { savedName, savedAge };
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-
-
-
-
-
-
 
 
 

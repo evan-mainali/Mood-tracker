@@ -5,6 +5,9 @@ import javax.swing.*;
 import com.moodtracker.*;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class NormalPage extends JFrame{
     JLabel labelCalendar;
@@ -152,6 +155,8 @@ public class NormalPage extends JFrame{
         setVisible(true);
 
     }
+
+
 
 
 
