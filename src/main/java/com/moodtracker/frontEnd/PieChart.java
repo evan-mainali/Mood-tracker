@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PieChart extends JFrame {
 
-    public static List<String> moods = new ArrayList<String>();
+    private static List<String> moods = new ArrayList<String>();
 
     private JButton button;
 

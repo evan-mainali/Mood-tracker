@@ -127,4 +127,51 @@ public class DataProcessor {
     public List<String> getSleepHoursDays() {
         return sleepHoursDays;
     }
+
+    public void saveAveragesInFile(){
+
+        double exercise = calculateAverage(exerciseTotals);
+        double sleep = calculateAverage(sleepHoursTotals);
+        double outdoor = calculateAverage(outdoorTimeTotals);
+
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ExerciseAverages.txt"));
+            writer.write(String.format(exercise+" "));
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("OutdoorAverages.txt"));
+            writer.write(String.format(outdoor+" "));
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("SleepAverages.txt"));
+            writer.write(String.format(sleep+" "));
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+
+    }
+
+    private double calculateAverage(List<Double> values){
+
+        if (values == null || values.isEmpty()) return 0.0;
+        double sum = 0.0;
+        for (double v : values) {
+            sum += v;
+        }
+        double avg = sum / values.size();
+        return Math.round(avg * 100.0) / 100.0;
+    }
+
+
 }

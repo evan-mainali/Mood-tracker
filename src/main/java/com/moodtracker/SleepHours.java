@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class SleepHours extends CurrentDate {
 
     private double hours;
-    private String name;
-    private int age;
     private boolean checker;
     private boolean checkerNull=false;
     private String filename = "SleepHours.txt";

@@ -16,52 +16,60 @@ public class BarChart extends JFrame {
     public BarChart() {
         setTitle("Daily times");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         // --- Create a DataProcessor instance to get the data ---
         DataProcessor dataProcessor = new DataProcessor();
+        dataProcessor.saveAveragesInFile();
 
-        // --- Create a main panel with a GridLayout to hold the charts ---
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(3, 1)); // 3 rows, 1 column
+        // --- Main panel to hold charts ---
+        JPanel chartsPanel = new JPanel();
+        chartsPanel.setLayout(new GridLayout(3, 1)); // 3 rows, 1 column
 
-        // --- Create the first chart (Exercise Hours) ---
+        // --- Exercise Hours Chart ---
         JFreeChart exerciseChart = ChartFactory.createBarChart(
-                "Exercise Hours",       // Chart title
-                "Day",                  // X-axis label
-                "Hours",                // Y-axis label
+                "Exercise Hours",
+                "Day",
+                "Hours",
                 createDataset(dataProcessor.getExerciseTotals(), dataProcessor.getExerciseDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
-        ChartPanel exercisePanel = new ChartPanel(exerciseChart);
-        mainPanel.add(exercisePanel);
+        chartsPanel.add(new ChartPanel(exerciseChart));
 
-        // --- Create the second chart (Outdoor Time) ---
-        JFreeChart outdoorTimeChart = ChartFactory.createBarChart(
-                "Outdoor Time",         // Chart title
-                "Day",                  // X-axis label
-                "Hours",                // Y-axis label
+        // --- Outdoor Time Chart ---
+        JFreeChart outdoorChart = ChartFactory.createBarChart(
+                "Outdoor Time",
+                "Day",
+                "Hours",
                 createDataset(dataProcessor.getOutdoorTimeTotals(), dataProcessor.getOutdoorTimeDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
-        ChartPanel outdoorTimePanel = new ChartPanel(outdoorTimeChart);
-        mainPanel.add(outdoorTimePanel);
+        chartsPanel.add(new ChartPanel(outdoorChart));
 
-        // --- Create the third chart (Sleep Hours) ---
-        JFreeChart sleepHoursChart = ChartFactory.createBarChart(
-                "Sleep Hours",          // Chart title
-                "Day",                  // X-axis label
-                "Hours",                // Y-axis label
+        // --- Sleep Hours Chart ---
+        JFreeChart sleepChart = ChartFactory.createBarChart(
+                "Sleep Hours",
+                "Day",
+                "Hours",
                 createDataset(dataProcessor.getSleepHoursTotals(), dataProcessor.getSleepHoursDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
-        ChartPanel sleepHoursPanel = new ChartPanel(sleepHoursChart);
-        mainPanel.add(sleepHoursPanel);
+        chartsPanel.add(new ChartPanel(sleepChart));
 
-        // Set the main panel as the content pane for the JFrame
-        setContentPane(mainPanel);
+        // --- Add charts panel to the center ---
+        add(chartsPanel, BorderLayout.CENTER);
+
+        // --- Create a button to open TableOfAverages ---
+        JButton tableButton = new JButton("Show Table of Averages");
+        tableButton.addActionListener(
+                e -> new TableOfAverages()
+        );
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(tableButton);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         pack();
         setLocationRelativeTo(null);

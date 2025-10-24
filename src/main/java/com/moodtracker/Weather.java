@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class Weather {
     public  double[] numbers = new double[9];
-    private final Scanner input = new Scanner(System.in);
 
 
 

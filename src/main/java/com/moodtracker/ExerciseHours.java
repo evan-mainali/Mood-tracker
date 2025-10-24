@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class ExerciseHours extends CurrentDate { // this class is for the exercise hours
 
     private double hours;
-    private String name;
-    private int age;
     private boolean checker=true;
     private boolean checkerNull=false;
     private String fileName = "Exercise.txt";
@@ -87,7 +85,6 @@ public class ExerciseHours extends CurrentDate { // this class is for the exerci
 
     }
     public double getExerciseHours(){ // this is just a getter for the hours if required
-
         return hours;
     }
 

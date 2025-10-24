@@ -9,14 +9,13 @@ import java.util.Scanner;
 public class OutdoorTime extends Weather{
 
 
-    private String name;
-    private int age;
     private double hours;
     private boolean checker=true;
     private boolean checkerNull=false;
     private boolean numberGreater;
     private CurrentDate date = new CurrentDate();
     private String fileName = "OutdoorTime.txt";
+
     public OutdoorTime() {
 
 

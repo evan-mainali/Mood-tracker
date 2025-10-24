@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class NormalPage extends JFrame{
-    JLabel labelCalendar;
+    private JLabel labelCalendar;
     private JPanel panel; // variable for panel with JPanel class
     private JLabel labelDate; // variable for date with JLabel class
     private JTextField textExer; // variable for exercise wirh JTextField class
@@ -24,7 +24,6 @@ public class NormalPage extends JFrame{
     private JLabel water;
     private JTextField waterText;
 
-    private static int lines=0;
 
     public NormalPage() {
 

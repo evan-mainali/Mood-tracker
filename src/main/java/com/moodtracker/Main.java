@@ -13,7 +13,7 @@ public class Main {
         String[] userData = LoginGUI.loadUserFromFile();
 
         if (userData != null) {
-            boolean loaded = ColorSelect.loadColorsFromFile();
+           boolean loaded = ColorSelect.loadColorsFromFile();
             if (loaded) {
                 new MoodSelect();
             } else {
@@ -21,7 +21,8 @@ public class Main {
                 new ColorSelect();
             }
 
-        } else {
+        }
+        else {
             new LoginGUI(); // Show login page
         }
 
