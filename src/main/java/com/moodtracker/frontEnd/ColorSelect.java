@@ -176,13 +176,9 @@ public class ColorSelect extends JFrame {
         for(int i=0;i< colors.length;i++){
             if(action.equals(colors[i])){
                 panel.setBackground(backgroundColor[i]);
-
             }
-
         }
-
     }
-
 
     private void validateColors() {
         if (colorHappy == null || colorSad == null || colorRegular == null) {

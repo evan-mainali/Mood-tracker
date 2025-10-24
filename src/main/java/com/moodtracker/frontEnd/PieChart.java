@@ -94,5 +94,9 @@ public class PieChart extends JFrame {
         }
     }
 
+    public static List<String> getMoods(){
+        return moods;
+    }
+
 
 }

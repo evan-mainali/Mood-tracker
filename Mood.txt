@@ -1,15 +1,8 @@
-29-6-2025 Happy, Sad, Happy
-30-6-2025 Calm
-21-6-2025 Tired
-1-7-2025 Sad
-2-7-2025 Happy
-3-7-2025 Calm
-4-8-2025 Sad, Sad, Sad
-21-9-2025 bored, frustrated
-29-6-2025 Happy, Sad, Happy
-30-6-2025 Calm
-21-6-2025 Tired
-1-7-2025 Sad
-2-7-2025 Happy
-3-7-2025 Calm
-21-9-2025 tired, sad
+19-1-2025 sad
+19-1-2025 tired
+19-1-2025 sad
+19-1-2025 tired
+19-1-2025 sad
+19-1-2025 tired
+19-1-2025 happy, frustrated, frustrated, tired, frustrated, tired, bored, tired
+22-1-2025 anxious, frustrated, tired

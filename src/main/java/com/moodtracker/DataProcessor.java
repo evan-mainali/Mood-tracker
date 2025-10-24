@@ -14,21 +14,23 @@ public class DataProcessor {
     private final String OUTDOOR_TIME_POINTER_FILE = "OutdoorTimePointer.txt";
     private final String SLEEP_HOURS_POINTER_FILE = "SleepHoursPointer.txt";
 
-    private List<Double> exerciseAverages = new ArrayList<>();
+    // Renamed lists to reflect storing totals instead of averages
+    private List<Double> exerciseTotals = new ArrayList<>();
     private List<String> exerciseDays = new ArrayList<>();
-    private List<Double> outdoorTimeAverages = new ArrayList<>();
+    private List<Double> outdoorTimeTotals = new ArrayList<>();
     private List<String> outdoorTimeDays = new ArrayList<>();
-    private List<Double> sleepHoursAverages = new ArrayList<>();
+    private List<Double> sleepHoursTotals = new ArrayList<>();
     private List<String> sleepHoursDays = new ArrayList<>();
 
     public DataProcessor() {
-        // Process each file with its own dedicated pointer file
-        processFile(EXERCISE_FILE, EXERCISE_POINTER_FILE, exerciseAverages, exerciseDays);
-        processFile(OUTDOOR_TIME_FILE, OUTDOOR_TIME_POINTER_FILE, outdoorTimeAverages, outdoorTimeDays);
-        processFile(SLEEP_HOURS_FILE, SLEEP_HOURS_POINTER_FILE, sleepHoursAverages, sleepHoursDays);
+        // Process each file with its own dedicated pointer file, passing the new total lists
+        processFile(EXERCISE_FILE, EXERCISE_POINTER_FILE, exerciseTotals, exerciseDays);
+        processFile(OUTDOOR_TIME_FILE, OUTDOOR_TIME_POINTER_FILE, outdoorTimeTotals, outdoorTimeDays);
+        processFile(SLEEP_HOURS_FILE, SLEEP_HOURS_POINTER_FILE, sleepHoursTotals, sleepHoursDays);
     }
 
-    private void processFile(String dataFileName, String pointerFileName, List<Double> averagesList, List<String> daysList) {
+
+    private void processFile(String dataFileName, String pointerFileName, List<Double> totalsList, List<String> daysList) {
         long position = loadPointer(pointerFileName);
         long newPosition = position;
 
@@ -44,10 +46,11 @@ public class DataProcessor {
 
                 String[] parts = line.split("\\s+", 2);
                 String day = parts[0];
-                double average = calculateAverage(line);
+                // Called the new calculateTotal method
+                double total = calculateTotal(line);
 
-                if (average != -1) {
-                    averagesList.add(average);
+                if (total != -1) {
+                    totalsList.add(total); // Add the total
                     daysList.add(day); // Store the day
                     lineCount++;
                 }
@@ -83,13 +86,14 @@ public class DataProcessor {
         }
     }
 
-    private double calculateAverage(String line) {
+
+    private double calculateTotal(String line) {
         String[] parts = line.split("\\s+");
         if (parts.length < 2) {
             return -1;
         }
         double sum = 0;
-        int count = 0;
+        int count = 0; // Keeping count to check if any valid number was processed
         for (int i = 1; i < parts.length; i++) {
             try {
                 sum += Double.parseDouble(parts[i]);
@@ -98,26 +102,27 @@ public class DataProcessor {
                 // Ignore invalid numbers
             }
         }
-        return count > 0 ? sum / count : -1;
+        // Return the sum if at least one valid number was found, otherwise return -1
+        return count > 0 ? sum : -1;
     }
 
-    // Getters for the processed data
-    public List<Double> getExerciseAverages() {
-        return exerciseAverages;
+    // Getters updated to return Totals
+    public List<Double> getExerciseTotals() {
+        return exerciseTotals;
     }
     public List<String> getExerciseDays() {
         return exerciseDays;
     }
 
-    public List<Double> getOutdoorTimeAverages() {
-        return outdoorTimeAverages;
+    public List<Double> getOutdoorTimeTotals() {
+        return outdoorTimeTotals;
     }
     public List<String> getOutdoorTimeDays() {
         return outdoorTimeDays;
     }
 
-    public List<Double> getSleepHoursAverages() {
-        return sleepHoursAverages;
+    public List<Double> getSleepHoursTotals() {
+        return sleepHoursTotals;
     }
     public List<String> getSleepHoursDays() {
         return sleepHoursDays;

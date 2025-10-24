@@ -14,7 +14,7 @@ import java.util.List;
 public class BarChart extends JFrame {
 
     public BarChart() {
-        setTitle("Daily Averages");
+        setTitle("Daily times");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // --- Create a DataProcessor instance to get the data ---
@@ -29,7 +29,7 @@ public class BarChart extends JFrame {
                 "Exercise Hours",       // Chart title
                 "Day",                  // X-axis label
                 "Hours",                // Y-axis label
-                createDataset(dataProcessor.getExerciseAverages(), dataProcessor.getExerciseDays()),
+                createDataset(dataProcessor.getExerciseTotals(), dataProcessor.getExerciseDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
@@ -41,7 +41,7 @@ public class BarChart extends JFrame {
                 "Outdoor Time",         // Chart title
                 "Day",                  // X-axis label
                 "Hours",                // Y-axis label
-                createDataset(dataProcessor.getOutdoorTimeAverages(), dataProcessor.getOutdoorTimeDays()),
+                createDataset(dataProcessor.getOutdoorTimeTotals(), dataProcessor.getOutdoorTimeDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
@@ -53,7 +53,7 @@ public class BarChart extends JFrame {
                 "Sleep Hours",          // Chart title
                 "Day",                  // X-axis label
                 "Hours",                // Y-axis label
-                createDataset(dataProcessor.getSleepHoursAverages(), dataProcessor.getSleepHoursDays()),
+                createDataset(dataProcessor.getSleepHoursTotals(), dataProcessor.getSleepHoursDays()),
                 PlotOrientation.VERTICAL,
                 true, true, false
         );
@@ -77,7 +77,7 @@ public class BarChart extends JFrame {
         }
 
         for (int i = 0; i < averages.size(); i++) {
-            dataset.addValue(averages.get(i), "Average", days.get(i));
+            dataset.addValue(averages.get(i), "Time", days.get(i));
         }
         return dataset;
     }
