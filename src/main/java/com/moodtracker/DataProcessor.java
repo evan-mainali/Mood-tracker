@@ -102,7 +102,7 @@ public class DataProcessor {
                 // Ignore invalid numbers
             }
         }
-        // Return the sum if at least one valid number was found, otherwise return -1
+        // Return the sum if at least one valid number was found, otherwise return -1mmmmm
         return count > 0 ? sum : -1;
     }
 

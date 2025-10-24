@@ -15,7 +15,6 @@ public class Main {
         if (userData != null) {
             boolean loaded = ColorSelect.loadColorsFromFile();
             if (loaded) {
-
                 new MoodSelect();
             } else {
 
